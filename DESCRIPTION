@@ -6,9 +6,11 @@ Authors@R: c(
       role = c("aut", "cre"), email = "matthew.fidler@gmail.com",
       comment=c(ORCID="0000-0001-8538-6691")))
 Imports: RxODE
+Suggests: devtools, usethis
 Description: A group of precompiled RxODE models
 Depends: R (>= 3.5.1)
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
+Biarch: true
 RoxygenNote: 6.1.1

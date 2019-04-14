@@ -14,22 +14,55 @@
 "Jones2013"
 
 
+##' RxODE one compartment model (solved)
+##' @examples
+##' oral1cmt %>% solve(et(timeUnits="hr") %>% et(amt=100)) %>% plot
+"oral1cmt"
+
+##' RxODE two compartment model (solved)
+##' @examples
+##' oral2cmt %>% solve(et(timeUnits="hr") %>% et(amt=100)) %>% plot
+"oral2cmt"
+
+##' RxODE three compartment model (solved)
+##' @examples
+##' oral3cmt %>% solve(et(timeUnits="hr") %>% et(amt=100)) %>% plot
+"oral3cmt"
+
+
+
+
+##'@importFrom RxODE RxODE
 ##' @export
 RxODE::RxODE
 
+##'@importFrom RxODE et
 ##' @export
 RxODE::et
 
+##'@importFrom RxODE add.sampling
 ##' @export
 RxODE::add.sampling
 
+##'@importFrom RxODE add.dosing
 ##' @export
 RxODE::add.dosing
 
+##'@importFrom RxODE eventTable
 ##' @export
 RxODE::eventTable
 
+##'@importFrom RxODE rxClean
 ##' @export
 RxODE::rxClean
+
+##'@importFrom RxODE rxSolve
+##' @export
+RxODE::rxSolve
+
+
+##'@importFrom RxODE rxControl
+##' @export
+RxODE::rxControl
 
 

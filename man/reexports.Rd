@@ -9,6 +9,8 @@
 \alias{add.dosing}
 \alias{eventTable}
 \alias{rxClean}
+\alias{rxSolve}
+\alias{rxControl}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -16,6 +18,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{RxODE}{\code{\link[RxODE]{RxODE}}, \code{\link[RxODE]{et}}, \code{\link[RxODE]{add.sampling}}, \code{\link[RxODE]{add.dosing}}, \code{\link[RxODE]{eventTable}}, \code{\link[RxODE]{rxClean}}}
+  \item{RxODE}{\code{\link[RxODE]{RxODE}}, \code{\link[RxODE]{et}}, \code{\link[RxODE]{add.sampling}}, \code{\link[RxODE]{add.dosing}}, \code{\link[RxODE]{eventTable}}, \code{\link[RxODE]{rxClean}}, \code{\link[RxODE]{rxSolve}}, \code{\link[RxODE]{rxControl}}}
 }}
 
