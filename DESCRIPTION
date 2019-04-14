@@ -8,7 +8,7 @@ Authors@R: c(
 Imports: RxODE
 Suggests: devtools, usethis
 Description: A group of precompiled RxODE models
-Depends: R (>= 3.5.1)
+Depends: R (>= 3.5.1), RxODE
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true

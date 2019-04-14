@@ -16,17 +16,20 @@
 
 ##' RxODE one compartment model (solved)
 ##' @examples
-##' oral1cmt %>% solve(et(timeUnits="hr") %>% et(amt=100)) %>% plot
+##' oral1cmt %>% solve(et(timeUnits="hr") %>% et(amt=100)) %>% plot # Oral
+##' oral1cmt %>% solve(et(amt=100,cmt=central,timeUnits="hr")) %>% plot # IV
 "oral1cmt"
 
 ##' RxODE two compartment model (solved)
 ##' @examples
 ##' oral2cmt %>% solve(et(timeUnits="hr") %>% et(amt=100)) %>% plot
+##' oral2cmt %>% solve(et(amt=100,cmt=central,timeUnits="hr")) %>% plot # IV
 "oral2cmt"
 
 ##' RxODE three compartment model (solved)
 ##' @examples
 ##' oral3cmt %>% solve(et(timeUnits="hr") %>% et(amt=100)) %>% plot
+##' oral3cmt %>% solve(et(amt=100,cmt=central,timeUnits="hr")) %>% plot # IV
 "oral3cmt"
 
 
