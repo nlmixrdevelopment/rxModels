@@ -197,8 +197,10 @@ Jones2013 <- RxODE({
 })
 
 rxUse(Jones2013);
-message("oral1cmt")
-oral1cmt <- RxODE({
+
+library(RxODE)
+message("pk1cmt")
+pk1cmt <- RxODE({
     popCl <- 1
     popV <- 20
     popKa <- 1
@@ -222,10 +224,10 @@ oral1cmt <- RxODE({
     dur(central) <- popDurCentral * exp(bsvDurCentral)
     cp <- linCmt()
 });
-rxUse(oral1cmt);
+rxUse(pk1cmt);
 
-message("oral2cmt")
-oral2cmt <- RxODE({
+message("pk2cmt")
+pk2cmt <- RxODE({
     popCl <- 1
     popV <- 20
     popKa <- 1
@@ -256,10 +258,10 @@ oral2cmt <- RxODE({
     cp <- linCmt()
 });
 
-rxUse(oral2cmt);
+rxUse(pk2cmt);
 
-message("oral3cmt")
-oral3cmt <- RxODE({
+message("pk3cmt")
+pk3cmt <- RxODE({
     popCl <- 1
     popV <- 20
     popKa <- 1
@@ -295,5 +297,7 @@ oral3cmt <- RxODE({
     dur(central)  <- popDurCentral * exp(bsvDurCentral)
     cp <- linCmt()
 });
-rxUse(oral3cmt);
+rxUse(pk3cmt);
+rm(list=ls());
+rxUse();
 
