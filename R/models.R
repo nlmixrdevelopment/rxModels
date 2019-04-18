@@ -2,4 +2,4 @@
 ##' @useDynLib rxModels, .registration=TRUE
 ##' @importFrom RxODE RxODE
 ##' @export
-RxODE::RxODE
+RxODE <- RxODE::RxODE
