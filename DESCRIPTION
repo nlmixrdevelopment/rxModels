@@ -9,7 +9,7 @@ Imports: RxODE
 LinkingTo: RxODE
 Suggests: devtools, usethis
 Description: A group of precompiled RxODE models
-Depends: R (>= 3.5.1), RxODE
+Depends: R (>= 3.5.1)
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true

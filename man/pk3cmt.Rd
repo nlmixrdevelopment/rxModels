@@ -44,68 +44,7 @@
 
 \describe{
   \item{cp}{Concentration in the plasma}
-}
-
-\emph{Model Code}
-
-RxODE({
-    popCl = 1
-    popV = 20
-    popKa = 1
-    popVp = 10
-    popQ = 2
-    popQ2 = 2
-    popVp2 = 100
-    bsvCl = 0
-    bsvV = 0
-    bsvKa = 0
-    bsvVp = 0
-    bsvQ = 0
-    bsvQ2 = 0
-    bsvVp2 = 0
-    cl ~ popCl * exp(bsvCl)
-    v ~ popV * exp(bsvV)
-    ka ~ popKa * exp(bsvKa)
-    q ~ popQ * exp(bsvQ)
-    vp ~ popVp * exp(bsvVp)
-    q2 ~ popQ2 * exp(bsvQ2)
-    vp2 ~ popVp2 * exp(bsvVp2)
-    popLagDepot = 0
-    popLagCentral = 0
-    popRateCentral = 0
-    popDurCentral = 0
-    bsvLagDepot = 0
-    bsvLagCentral = 0
-    bsvRateCentral = 0
-    bsvDurCentral = 0
-    rx_ka ~ ka
-    rx_rate ~ popRateCentral * exp(bsvRateCentral)
-    rx_dur ~ popDurCentral * exp(bsvDurCentral)
-    rx_tlag ~ popLagDepot * exp(bsvLagDepot)
-    rx_tlag2 ~ popLagCentral * exp(bsvLagCentral)
-    rx_F ~ 1
-    rx_F2 ~ 1
-    rx_v ~ v
-    rx_k ~ cl/v
-    rx_k12 ~ q/v
-    rx_k21 ~ q/vp
-    rx_beta ~ 0.5 * (rx_k12 + rx_k21 + rx_k - sqrt((rx_k12 +
-        rx_k21 + rx_k) * (rx_k12 + rx_k21 + rx_k) - 4 * rx_k21 *
-        rx_k))
-    rx_alpha ~ rx_k21 * rx_k/rx_beta
-    rx_A ~ rx_ka/(rx_ka - rx_alpha) * (rx_alpha - rx_k21)/(rx_alpha -
-        rx_beta)/rx_v
-    rx_B ~ rx_ka/(rx_ka - rx_beta) * (rx_beta - rx_k21)/(rx_beta -
-        rx_alpha)/rx_v
-    rx_A2 ~ (rx_alpha - rx_k21)/(rx_alpha - rx_beta)/rx_v
-    rx_B2 ~ (rx_beta - rx_k21)/(rx_beta - rx_alpha)/rx_v
-    rx_gamma ~ 0
-    rx_C ~ 0
-    rx_C2 ~ 0
-    cp = solveLinB(rx__PTR__, t, 0, rx_A, rx_A2, rx_alpha, rx_B,
-        rx_B2, rx_beta, rx_C, rx_C2, rx_gamma, rx_ka, rx_tlag,
-        rx_tlag2, rx_F, rx_F2, rx_rate, rx_dur)
-})}
+}}
 \usage{
 pk3cmt
 }
@@ -113,6 +52,8 @@ pk3cmt
 pk3cmt RxODE model
 }
 \examples{
+## To see the model code:
+summary(pk3cmt)
 
 pk3cmt \%>\% solve(et(timeUnits="hr") \%>\% et(amt=100)) \%>\% plot # Oral
 pk3cmt \%>\% solve(et(amt=100,cmt=central,timeUnits="hr")) \%>\% plot # IV
