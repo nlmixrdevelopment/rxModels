@@ -15,11 +15,13 @@ void R_init_rxModels(DllInfo *info){
   R_useDynamicSymbols(info,FALSE);
 }
 void R_unload_rxModels_Jones2013(DllInfo *info);
+void R_unload_rxModels_Ribba2012(DllInfo *info);
 void R_unload_rxModels_pk1cmt(DllInfo *info);
 void R_unload_rxModels_pk2cmt(DllInfo *info);
 void R_unload_rxModels_pk3cmt(DllInfo *info);
 void R_unload_rxModels(DllInfo *info){
   R_unload_rxModels_Jones2013(info);
+  R_unload_rxModels_Ribba2012(info);
   R_unload_rxModels_pk1cmt(info);
   R_unload_rxModels_pk2cmt(info);
   R_unload_rxModels_pk3cmt(info);

@@ -299,5 +299,56 @@ pk3cmt <- RxODE({
 });
 rxUse(pk3cmt);
 rm(list=ls());
+
+Ribba2012 <- RxODE({
+    k = 100
+
+    tkde = 0.24
+    eta.tkde = 0
+    kde = tkde*exp(eta.tkde)
+
+    tkpq = 0.0295
+    eta.kpq = 0
+    kpq = tkpq * exp(eta.kpq)
+
+    tkqpp = 0.0031
+    eta.kqpp = 0
+    kqpp = tkqpp * exp(eta.kqpp)
+
+    tlambdap = 0.121
+    eta.lambdap = 0
+    lambdap = tlambdap*exp(eta.lambdap)
+
+    tgamma = 0.729
+    eta.gamma = 0
+    gamma = tgamma*exp(eta.gamma)
+
+    tdeltaqp = 0.00867
+    eta.deltaqp = 0
+    deltaqp = tdeltaqp*exp(eta.deltaqp)
+
+    pstar <- pt+q+qp
+    d/dt(c) = -kde * c
+    d/dt(pt) = lambdap * pt *(1-pstar/k) + kqpp*qp -
+        kpq*pt - gamma*c*kde*pt
+    d/dt(q) = kpq*pt -gamma*c*kde*q
+    d/dt(qp) = gamma*c*kde*q - kqpp*qp - deltaqp*qp
+    ## initial conditions
+    tpt0 = 7.13
+    eta.pt0 = 0
+    pt0 = tpt0*exp(eta.pt0)
+    tq0 = 41.2
+    eta.q0 = 0
+    q0 = tq0*exp(eta.q0)
+    pt(0) = pt0
+    q(0) = q0
+})
+
+rxUse(Ribba2012)
+
 rxUse();
+
+devtools::load_all()
+devtools::document()
+devtools::install()
 

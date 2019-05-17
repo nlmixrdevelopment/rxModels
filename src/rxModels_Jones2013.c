@@ -1,6 +1,7 @@
 #include <RxODE.h>
 #include <RxODE_model.h>
 #define __MAX_PROD__ 0
+#define _CMT CMT
 extern void  rxModels_Jones2013_ode_solver_solvedata (rx_solve *solve){
   _solveData = solve;
 }
@@ -1492,11 +1493,11 @@ extern SEXP rxModels_Jones2013_model_vars(){
   int pro=0;
   SEXP _mv = PROTECT(_rxGetModelLib("rxModels_Jones2013_model_vars"));pro++;
   if (!_rxIsCurrentC(_mv)){
-    SEXP lst      = PROTECT(allocVector(VECSXP, 18));pro++;
-    SEXP names    = PROTECT(allocVector(STRSXP, 18));pro++;
+    SEXP lst      = PROTECT(allocVector(VECSXP, 20));pro++;
+    SEXP names    = PROTECT(allocVector(STRSXP, 20));pro++;
     SEXP sNeedSort = PROTECT(allocVector(INTSXP,1));pro++;
     int *iNeedSort  = INTEGER(sNeedSort);
-    iNeedSort[0] = 0;
+    iNeedSort[0] = 42;
     SEXP sMtime = PROTECT(allocVector(INTSXP,1));pro++;
     int *iMtime  = INTEGER(sMtime);
     iMtime[0] = 0;
@@ -1506,9 +1507,10 @@ extern SEXP rxModels_Jones2013_model_vars(){
     SEXP params   = PROTECT(allocVector(STRSXP, 53));pro++;
     SEXP lhs      = PROTECT(allocVector(STRSXP, 1));pro++;
     SEXP state    = PROTECT(allocVector(STRSXP, 16));pro++;
+  SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 16));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1555680035;
+    INTEGER(timeInt)[0] = 1558070794;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 16));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;
@@ -1771,12 +1773,17 @@ extern SEXP rxModels_Jones2013_model_vars(){
     SET_VECTOR_ELT(lst,  14,sMtime);
     SET_STRING_ELT(names,15,mkChar("extraCmt"));
     SET_VECTOR_ELT(lst,  15,sExtraCmt);
-    SET_STRING_ELT(names,16,mkChar("timeId"));
-    SET_VECTOR_ELT(lst,  16,timeInt);
-    SET_STRING_ELT(names,17,mkChar("md5"));    SET_VECTOR_ELT(lst,  17,mmd5);    SET_STRING_ELT(mmd5n,0,mkChar("file_md5"));
-    SET_STRING_ELT(mmd5,0,mkChar("6136e276a107c032b2808cd48fe763f6"));
+    SET_STRING_ELT(names, 16, mkChar("stateExtra"));
+    SET_VECTOR_ELT(lst,  16, extraState);
+    SET_STRING_ELT(names, 17, mkChar("dvid"));
+    SEXP sDvid = PROTECT(allocVector(INTSXP,0));pro++;
+    SET_VECTOR_ELT(lst, 17, sDvid);
+    SET_STRING_ELT(names,18,mkChar("timeId"));
+    SET_VECTOR_ELT(lst,  18,timeInt);
+    SET_STRING_ELT(names,19,mkChar("md5"));    SET_VECTOR_ELT(lst,  19,mmd5);    SET_STRING_ELT(mmd5n,0,mkChar("file_md5"));
+    SET_STRING_ELT(mmd5,0,mkChar("c999cba829cd4ddcc985ada5d8da350e"));
     SET_STRING_ELT(mmd5n,1,mkChar("parsed_md5"));
-    SET_STRING_ELT(mmd5,1,mkChar("6136e276a107c032b2808cd48fe763f6"));
+    SET_STRING_ELT(mmd5,1,mkChar("c999cba829cd4ddcc985ada5d8da350e"));
     SET_STRING_ELT(trann,0,mkChar("lib.name"));
     SET_STRING_ELT(tran, 0,mkChar("rxModels"));
     SET_STRING_ELT(trann,1,mkChar("jac"));
