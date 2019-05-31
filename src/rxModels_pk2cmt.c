@@ -574,7 +574,7 @@ extern SEXP rxModels_pk2cmt_model_vars(){
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 0));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1559283241;
+    INTEGER(timeInt)[0] = 1559285233;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;

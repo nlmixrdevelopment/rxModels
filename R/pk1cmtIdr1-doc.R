@@ -1,6 +1,6 @@
 ##' pk1cmtIdr1 RxODE model
 ##'
-##' @format An \emph{RxODE} model with 22 parameters, 3 ODE states, and 5 calc vars.
+##' @format An \emph{RxODE} model with 23 parameters, 3 ODE states, and 5 calc vars.
 ##'
 ##'\emph{Parameters (pk1cmtIdr1$params)}
 ##'
@@ -27,6 +27,7 @@
 ##'   \item{bsvKin}{ (default=0)}
 ##'   \item{popKout}{ (default=0.3)}
 ##'   \item{bsvKout}{ (default=0)}
+##'   \item{gamma}{ (default=1)}
 ##'}
 ##'
 ##' \emph{State pk1cmtIdr1$state}

@@ -9,9 +9,9 @@ extern rx_solve *rxModels_pk1cmtIdr1_ode_solver_get_solvedata(){
   return _solveData;
 }
 SEXP rxModels_pk1cmtIdr1_model_vars();
-double _theta[22];
+double _theta[23];
 extern double* rxModels_pk1cmtIdr1_theta(double *theta){
-  _theta[0] = 1.0000000000000000; _theta[1] = 20.0000000000000000; _theta[2] = 1.0000000000000000; _theta[3] = 0.0000000000000000; _theta[4] = 0.0000000000000000; _theta[5] = 0.0000000000000000; _theta[6] = 0.0000000000000000; _theta[7] = 0.0000000000000000; _theta[8] = 0.0000000000000000; _theta[9] = 0.0000000000000000; _theta[10] = 0.0000000000000000; _theta[11] = 0.0000000000000000; _theta[12] = 0.0000000000000000; _theta[13] = 0.0000000000000000; _theta[14] = 0.0000000000000000; _theta[15] = 0.9999000000000000; _theta[16] = 100.0000000000000000; _theta[17] = 0.0000000000000000; _theta[18] = 9.0000000000000000; _theta[19] = 0.0000000000000000; _theta[20] = 0.3000000000000000; _theta[21] = 0.0000000000000000;
+  _theta[0] = 1.0000000000000000; _theta[1] = 20.0000000000000000; _theta[2] = 1.0000000000000000; _theta[3] = 0.0000000000000000; _theta[4] = 0.0000000000000000; _theta[5] = 0.0000000000000000; _theta[6] = 0.0000000000000000; _theta[7] = 0.0000000000000000; _theta[8] = 0.0000000000000000; _theta[9] = 0.0000000000000000; _theta[10] = 0.0000000000000000; _theta[11] = 0.0000000000000000; _theta[12] = 0.0000000000000000; _theta[13] = 0.0000000000000000; _theta[14] = 0.0000000000000000; _theta[15] = 0.9999000000000000; _theta[16] = 100.0000000000000000; _theta[17] = 0.0000000000000000; _theta[18] = 9.0000000000000000; _theta[19] = 0.0000000000000000; _theta[20] = 0.3000000000000000; _theta[21] = 0.0000000000000000; _theta[22] = 1.0000000000000000;
   return _theta;
 }
 
@@ -69,6 +69,7 @@ void rxModels_pk1cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -121,6 +122,7 @@ void rxModels_pk1cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
 
   _update_par_ptr(t, _cSub, _solveData, _idx);
@@ -146,6 +148,7 @@ void rxModels_pk1cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   bsvKin = _PP[19];
   popKout = _PP[20];
   bsvKout = _PP[21];
+  gamma = _PP[22];
 
   R = __zzStateVar__[0]*((double)(_ON[0]));
 
@@ -176,7 +179,7 @@ void rxModels_pk1cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   ic50=popIc50*exp(bsvIc50);
   kin=popKin*exp(bsvKin);
   kout=popKout*exp(bsvKout);
-  __DDtStateVar__[0] = ((double)(_ON[0]))*(_IR[0] + kin*(1-Imax*cp/safe_zero((ic50+cp)))-kout*R);
+  __DDtStateVar__[0] = ((double)(_ON[0]))*(_IR[0] + kin*(1-Imax* R_pow(cp,gamma)/safe_zero(( R_pow(ic50,gamma)+ R_pow(cp,gamma))))-kout*R);
   (&_solveData->subjects[_cSub])->dadt_counter[0]++;
 }
 
@@ -237,6 +240,7 @@ void rxModels_pk1cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -289,6 +293,7 @@ void rxModels_pk1cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
 
   _update_par_ptr(0.0, _cSub, _solveData, _idx);
@@ -314,6 +319,7 @@ void rxModels_pk1cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   bsvKin = _PP[19];
   popKout = _PP[20];
   bsvKout = _PP[21];
+  gamma = _PP[22];
 
   R = __zzStateVar__[0]*((double)(_ON[0]));
 
@@ -399,6 +405,7 @@ void rxModels_pk1cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -452,6 +459,7 @@ void rxModels_pk1cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
 
   _update_par_ptr(t, _cSub, _solveData, _idx);
@@ -477,6 +485,7 @@ void rxModels_pk1cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   bsvKin = _PP[19];
   popKout = _PP[20];
   bsvKout = _PP[21];
+  gamma = _PP[22];
 
   R = __zzStateVar__[0]*((double)(_ON[0]));
 
@@ -507,7 +516,7 @@ void rxModels_pk1cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   ic50=popIc50*exp(bsvIc50);
   kin=popKin*exp(bsvKin);
   kout=popKout*exp(bsvKout);
-  __DDtStateVar_0__ = ((double)(_ON[0]))*(_IR[0] + kin*(1-Imax*cp/safe_zero((ic50+cp)))-kout*R);
+  __DDtStateVar_0__ = ((double)(_ON[0]))*(_IR[0] + kin*(1-Imax* R_pow(cp,gamma)/safe_zero(( R_pow(ic50,gamma)+ R_pow(cp,gamma))))-kout*R);
 
   _lhs[0]=cp;
   _lhs[1]=Imax;
@@ -571,6 +580,7 @@ double rxModels_pk1cmtIdr1_Lag(int _cSub,  int _cmt, double t){
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -623,6 +633,7 @@ double rxModels_pk1cmtIdr1_Lag(int _cSub,  int _cmt, double t){
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
 
   _update_par_ptr(NA_REAL, _cSub, _solveData, _idx);
@@ -648,6 +659,7 @@ double rxModels_pk1cmtIdr1_Lag(int _cSub,  int _cmt, double t){
   bsvKin = _PP[19];
   popKout = _PP[20];
   bsvKout = _PP[21];
+  gamma = _PP[22];
 
 }
 // Modeled zero-order rate
@@ -702,6 +714,7 @@ double rxModels_pk1cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -754,6 +767,7 @@ double rxModels_pk1cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
 
   _update_par_ptr(NA_REAL, _cSub, _solveData, _idx);
@@ -779,6 +793,7 @@ double rxModels_pk1cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
   bsvKin = _PP[19];
   popKout = _PP[20];
   bsvKout = _PP[21];
+  gamma = _PP[22];
 
 }
 // Modeled zero-order duration
@@ -803,13 +818,13 @@ extern SEXP rxModels_pk1cmtIdr1_model_vars(){
     SEXP sExtraCmt = PROTECT(allocVector(INTSXP,1));pro++;
     int *iExtraCmt  = INTEGER(sExtraCmt);
     iExtraCmt[0] = 2;
-    SEXP params   = PROTECT(allocVector(STRSXP, 22));pro++;
+    SEXP params   = PROTECT(allocVector(STRSXP, 23));pro++;
     SEXP lhs      = PROTECT(allocVector(STRSXP, 5));pro++;
     SEXP state    = PROTECT(allocVector(STRSXP, 1));pro++;
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 1));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1559283232;
+    INTEGER(timeInt)[0] = 1559285224;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 1));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;
@@ -855,13 +870,14 @@ extern SEXP rxModels_pk1cmtIdr1_model_vars(){
     SET_STRING_ELT(params,20,mkChar("popKout"));
     SET_STRING_ELT(params,21,mkChar("bsvKout"));
   SET_STRING_ELT(lhs,4,mkChar("kout"));
+    SET_STRING_ELT(params,22,mkChar("gamma"));
     SET_STRING_ELT(state,0,mkChar("R"));
     SET_STRING_ELT(normState,0,mkChar("R"));
     _SR[0] = 0;
     SET_STRING_ELT(modeln,0,mkChar("normModel"));
-    SET_STRING_ELT(model,0,mkChar("popCl=1;\npopV=20;\npopKa=1;\nbsvCl=0;\nbsvV=0;\nbsvKa=0;\ncl~popCl*exp(bsvCl);\nv~popV*exp(bsvV);\nka~popKa*exp(bsvKa);\npopLagDepot=0;\npopLagCentral=0;\npopRateCentral=0;\npopDurCentral=0;\nbsvLagDepot=0;\nbsvLagCentral=0;\nbsvRateCentral=0;\nbsvDurCentral=0;\nrx_ka~ka;\nrx_rate~popRateCentral*exp(bsvRateCentral);\nrx_dur~popDurCentral*exp(bsvDurCentral);\nrx_tlag~popLagDepot*exp(bsvLagDepot);\nrx_tlag2~popLagCentral*exp(bsvLagCentral);\nrx_F~1;\nrx_F2~1;\nrx_v~v;\nrx_k~cl/v;\nrx_alpha~rx_k;\nrx_A~rx_ka/(rx_ka-rx_alpha)/rx_v;\nrx_A2~1.0/rx_v;\nrx_beta~0;\nrx_B~0;\nrx_B2~0;\nrx_gamma~0;\nrx_C~0;\nrx_C2~0;\ncp=solveLinB(rx__PTR__,t,1,rx_A,rx_A2,rx_alpha,rx_B,rx_B2,rx_beta,rx_C,rx_C2,rx_gamma,rx_ka,rx_tlag,rx_tlag2,rx_F,rx_F2,rx_rate,rx_dur);\nbsvImax=0;\npopImax=0.9999;\nlogitImax~-log(1/popImax-1)+bsvImax;\nImax=1/(1+exp(-logitImax));\npopIc50=100;\nbsvIc50=0;\nic50=popIc50*exp(bsvIc50);\npopKin=9;\nbsvKin=0;\nkin=popKin*exp(bsvKin);\npopKout=0.3;\nbsvKout=0;\nkout=popKout*exp(bsvKout);\nd/dt(R)=kin*(1-Imax*cp/(ic50+cp))-kout*R;\nR(0)=kin/kout;\n"));
-    SEXP ini    = PROTECT(allocVector(REALSXP,22));pro++;
-    SEXP inin   = PROTECT(allocVector(STRSXP, 22));pro++;
+    SET_STRING_ELT(model,0,mkChar("popCl=1;\npopV=20;\npopKa=1;\nbsvCl=0;\nbsvV=0;\nbsvKa=0;\ncl~popCl*exp(bsvCl);\nv~popV*exp(bsvV);\nka~popKa*exp(bsvKa);\npopLagDepot=0;\npopLagCentral=0;\npopRateCentral=0;\npopDurCentral=0;\nbsvLagDepot=0;\nbsvLagCentral=0;\nbsvRateCentral=0;\nbsvDurCentral=0;\nrx_ka~ka;\nrx_rate~popRateCentral*exp(bsvRateCentral);\nrx_dur~popDurCentral*exp(bsvDurCentral);\nrx_tlag~popLagDepot*exp(bsvLagDepot);\nrx_tlag2~popLagCentral*exp(bsvLagCentral);\nrx_F~1;\nrx_F2~1;\nrx_v~v;\nrx_k~cl/v;\nrx_alpha~rx_k;\nrx_A~rx_ka/(rx_ka-rx_alpha)/rx_v;\nrx_A2~1.0/rx_v;\nrx_beta~0;\nrx_B~0;\nrx_B2~0;\nrx_gamma~0;\nrx_C~0;\nrx_C2~0;\ncp=solveLinB(rx__PTR__,t,1,rx_A,rx_A2,rx_alpha,rx_B,rx_B2,rx_beta,rx_C,rx_C2,rx_gamma,rx_ka,rx_tlag,rx_tlag2,rx_F,rx_F2,rx_rate,rx_dur);\nbsvImax=0;\npopImax=0.9999;\nlogitImax~-log(1/popImax-1)+bsvImax;\nImax=1/(1+exp(-logitImax));\npopIc50=100;\nbsvIc50=0;\nic50=popIc50*exp(bsvIc50);\npopKin=9;\nbsvKin=0;\nkin=popKin*exp(bsvKin);\npopKout=0.3;\nbsvKout=0;\nkout=popKout*exp(bsvKout);\ngamma=1;\nd/dt(R)=kin*(1-Imax*cp^gamma/(ic50^gamma+cp^gamma))-kout*R;\nR(0)=kin/kout;\n"));
+    SEXP ini    = PROTECT(allocVector(REALSXP,23));pro++;
+    SEXP inin   = PROTECT(allocVector(STRSXP, 23));pro++;
     SET_STRING_ELT(inin,0,mkChar("popCl"));
     REAL(ini)[0] = 1.0000000000000000;
     SET_STRING_ELT(inin,1,mkChar("popV"));
@@ -906,6 +922,8 @@ extern SEXP rxModels_pk1cmtIdr1_model_vars(){
     REAL(ini)[20] = 0.3000000000000000;
     SET_STRING_ELT(inin,21,mkChar("bsvKout"));
     REAL(ini)[21] = 0.0000000000000000;
+    SET_STRING_ELT(inin,22,mkChar("gamma"));
+    REAL(ini)[22] = 1.0000000000000000;
     SET_STRING_ELT(names,0,mkChar("params"));
     SET_VECTOR_ELT(lst,  0,params);
     SET_STRING_ELT(names,1,mkChar("lhs"));
@@ -946,9 +964,9 @@ extern SEXP rxModels_pk1cmtIdr1_model_vars(){
     SET_STRING_ELT(names,18,mkChar("timeId"));
     SET_VECTOR_ELT(lst,  18,timeInt);
     SET_STRING_ELT(names,19,mkChar("md5"));    SET_VECTOR_ELT(lst,  19,mmd5);    SET_STRING_ELT(mmd5n,0,mkChar("file_md5"));
-    SET_STRING_ELT(mmd5,0,mkChar("214fd0f014e8ac0a53ffa5ba84d92bde"));
+    SET_STRING_ELT(mmd5,0,mkChar("507968356a174a61e9993bb351bdeedb"));
     SET_STRING_ELT(mmd5n,1,mkChar("parsed_md5"));
-    SET_STRING_ELT(mmd5,1,mkChar("214fd0f014e8ac0a53ffa5ba84d92bde"));
+    SET_STRING_ELT(mmd5,1,mkChar("507968356a174a61e9993bb351bdeedb"));
     SET_STRING_ELT(trann,0,mkChar("lib.name"));
     SET_STRING_ELT(tran, 0,mkChar("rxModels"));
     SET_STRING_ELT(trann,1,mkChar("jac"));

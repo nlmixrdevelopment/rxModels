@@ -559,7 +559,7 @@ extern SEXP rxModels_Ribba2012_model_vars(){
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 4));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1559283267;
+    INTEGER(timeInt)[0] = 1559285261;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 4));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;

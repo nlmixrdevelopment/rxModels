@@ -264,7 +264,8 @@ pk1cmtIdr1 <- RxODE({
     popKout <- 0.3
     bsvKout <- 0
     kout <- popKout * exp(bsvKout)
-    d/dt(R) <- kin * (1 - Imax * cp / (ic50 + cp)) - kout * R
+    gamma <- 1
+    d/dt(R) <- kin * (1 - Imax * cp ^ gamma/ (ic50 ^ gamma+ cp ^ gamma)) - kout * R
     R(0) <- kin / kout
 });
 rxUse(pk1cmtIdr1);
@@ -306,7 +307,8 @@ pk1cmtIdr2 <- RxODE({
     popKout <- 0.3
     bsvKout <- 0
     kout <- popKout * exp(bsvKout)
-    d/dt(R) <- kin - kout * R * (1 - Imax * cp / (ic50 + cp))
+    gamma <- 1
+    d/dt(R) <- kin - kout * R * (1 - Imax * cp ^ gamma/ (ic50 ^ gamma+ cp ^ gamma))
     R(0) <- kin / kout
 });
 rxUse(pk1cmtIdr2);
@@ -389,7 +391,8 @@ pk2cmtIdr1 <- RxODE({
     popKout <- 0.3
     bsvKout <- 0
     kout <- popKout * exp(bsvKout)
-    d/dt(R) <- kin * (1 - Imax * cp / (ic50 + cp)) - kout * R
+    gamma <- 1
+    d/dt(R) <- kin * (1 - Imax * cp ^ gamma/ (ic50 ^ gamma + cp ^ gamma)) - kout * R
     R(0) <- kin / kout
 });
 rxUse(pk2cmtIdr1);
@@ -438,7 +441,7 @@ pk2cmtIdr2 <- RxODE({
     popKout <- 0.3
     bsvKout <- 0
     kout <- popKout * exp(bsvKout)
-    d/dt(R) <- kin - kout * R * (1 - Imax * cp / (ic50 + cp))
+    d/dt(R) <- kin - kout * R * (1 - Imax * cp ^ gamma/ (ic50 ^ gamma + cp ^ gamma))
     R(0) <- kin / kout
 });
 rxUse(pk2cmtIdr2);
@@ -531,7 +534,8 @@ pk3cmtIdr1 <- RxODE({
     popKout <- 0.3
     bsvKout <- 0
     kout <- popKout * exp(bsvKout)
-    d/dt(R) <- kin * (1 - Imax * cp / (ic50 + cp)) - kout * R
+    gamma <- 1
+    d/dt(R) <- kin * (1 - Imax * cp ^ gamma/ (ic50 ^ gamma + cp ^ gamma)) - kout * R
     R(0) <- kin / kout
 });
 rxUse(pk3cmtIdr1);
@@ -586,7 +590,8 @@ pk3cmtIdr2 <- RxODE({
     popKout <- 0.3
     bsvKout <- 0
     kout <- popKout * exp(bsvKout)
-    d/dt(R) <- kin - kout * R * (1 - Imax * cp / (ic50 + cp))
+    gamma <- 1
+    d/dt(R) <- kin - kout * R * (1 - Imax * cp ^ gamma/ (ic50 ^ gamma + cp ^ gamma))
     R(0) <- kin / kout
 });
 rxUse(pk3cmtIdr2);

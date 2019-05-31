@@ -1510,7 +1510,7 @@ extern SEXP rxModels_Jones2013_model_vars(){
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 16));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1559283223;
+    INTEGER(timeInt)[0] = 1559285215;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 16));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;
