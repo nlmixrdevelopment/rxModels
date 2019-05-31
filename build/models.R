@@ -226,6 +226,49 @@ pk1cmt <- RxODE({
 });
 rxUse(pk1cmt);
 
+
+message("pk1cmtIdr1")
+pk1cmtIdr1 <- RxODE({
+    popCl <- 1
+    popV <- 20
+    popKa <- 1
+    bsvCl <- 0
+    bsvV  <- 0
+    bsvKa <- 0
+    cl ~ popCl * exp(bsvCl)
+    v ~ popV * exp(bsvV)
+    ka ~ popKa * exp(bsvKa)
+    popLagDepot <- 0
+    popLagCentral <- 0
+    popRateCentral <- 0
+    popDurCentral <- 0
+    bsvLagDepot <- 0
+    bsvLagCentral <- 0
+    bsvRateCentral <- 0
+    bsvDurCentral <- 0
+    lag(depot) <- popLagDepot * exp(bsvLagDepot)
+    lag(central) <- popLagCentral * exp(bsvLagCentral)
+    rate(central) <- popRateCentral *  exp(bsvRateCentral)
+    dur(central) <- popDurCentral * exp(bsvDurCentral)
+    cp <- linCmt()
+    bsvImax <- 0
+    popImax <- 0.9999
+    logitImax ~ -log(1 / popImax - 1) + bsvImax
+    Imax <- 1 / (1 + exp(-logitImax))
+    popIc50 <- 100
+    bsvIc50 <- 0
+    ic50 <- popIc50 * exp(bsvIc50)
+    popKin <- 9
+    bsvKin <- 0
+    kin <- popKin * exp(bsvKin)
+    popKout <- 0.3
+    bsvKout <- 0
+    kout <- popKout * exp(bsvKout)
+    d/dt(R) <- kin * (1 - Imax * cp / (ic50 + cp)) - kout * R
+    R(0) <- kin / kout
+});
+rxUse(pk1cmtIdr1);
+
 message("pk2cmt")
 pk2cmt <- RxODE({
     popCl <- 1
@@ -257,8 +300,56 @@ pk2cmt <- RxODE({
     dur(central) <- popDurCentral * exp(bsvDurCentral)
     cp <- linCmt()
 });
-
 rxUse(pk2cmt);
+
+
+message("pk2cmtIdr1")
+pk2cmtIdr1 <- RxODE({
+    popCl <- 1
+    popV <- 20
+    popKa <- 1
+    popVp <- 10
+    popQ <- 2
+    bsvCl <-0
+    bsvV <- 0
+    bsvKa <-0
+    bsvVp <- 0
+    bsvQ <-0
+    cl ~ popCl * exp(bsvCl)
+    v ~ popV * exp(bsvV)
+    ka ~ popKa * exp(bsvKa)
+    q ~ popQ * exp(bsvQ)
+    vp ~ popVp * exp(bsvVp)
+    popLagDepot <- 0
+    popLagCentral <- 0
+    popRateCentral <- 0
+    popDurCentral <- 0
+    bsvLagDepot <- 0
+    bsvLagCentral <- 0
+    bsvRateCentral <- 0
+    bsvDurCentral <- 0
+    lag(depot) <- popLagDepot * exp(bsvLagDepot)
+    lag(central) <- popLagCentral * exp(bsvLagCentral)
+    rate(central) <- popRateCentral * exp(bsvRateCentral)
+    dur(central) <- popDurCentral * exp(bsvDurCentral)
+    cp <- linCmt()
+    bsvImax <- 0
+    popImax <- 0.9999
+    logitImax ~ -log(1 / popImax - 1) + bsvImax
+    Imax <- 1 / (1 + exp(-logitImax))
+    popIc50 <- 100
+    bsvIc50 <- 0
+    ic50 <- popIc50 * exp(bsvIc50)
+    popKin <- 9
+    bsvKin <- 0
+    kin <- popKin * exp(bsvKin)
+    popKout <- 0.3
+    bsvKout <- 0
+    kout <- popKout * exp(bsvKout)
+    d/dt(R) <- kin * (1 - Imax * cp / (ic50 + cp)) - kout * R
+    R(0) <- kin / kout
+});
+rxUse(pk2cmtIdr1);
 
 message("pk3cmt")
 pk3cmt <- RxODE({
@@ -298,7 +389,60 @@ pk3cmt <- RxODE({
     cp <- linCmt()
 });
 rxUse(pk3cmt);
-rm(list=ls());
+
+message("pk3cmtIdr1")
+pk3cmtIdr1 <- RxODE({
+    popCl <- 1
+    popV <- 20
+    popKa <- 1
+    popVp <- 10
+    popQ <- 2
+    popQ2 <- 2
+    popVp2 <- 100
+    bsvCl <- 0
+    bsvV <- 0
+    bsvKa <- 0
+    bsvVp <- 0
+    bsvQ <- 0
+    bsvQ2 <- 0
+    bsvVp2 <- 0
+    cl ~ popCl * exp(bsvCl)
+    v ~ popV * exp(bsvV)
+    ka ~ popKa * exp(bsvKa)
+    q ~ popQ * exp(bsvQ)
+    vp ~ popVp * exp(bsvVp)
+    q2 ~ popQ2 * exp(bsvQ2)
+    vp2 ~ popVp2 * exp(bsvVp2)
+    popLagDepot <- 0
+    popLagCentral <- 0
+    popRateCentral <- 0
+    popDurCentral <- 0
+    bsvLagDepot <- 0
+    bsvLagCentral <- 0
+    bsvRateCentral <- 0
+    bsvDurCentral <- 0
+    lag(depot)    <- popLagDepot * exp(bsvLagDepot)
+    lag(central)  <- popLagCentral * exp(bsvLagCentral)
+    rate(central) <- popRateCentral * exp(bsvRateCentral)
+    dur(central)  <- popDurCentral * exp(bsvDurCentral)
+    cp <- linCmt()
+    bsvImax <- 0
+    popImax <- 0.9999
+    logitImax ~ -log(1 / popImax - 1) + bsvImax
+    Imax <- 1 / (1 + exp(-logitImax))
+    popIc50 <- 100
+    bsvIc50 <- 0
+    ic50 <- popIc50 * exp(bsvIc50)
+    popKin <- 9
+    bsvKin <- 0
+    kin <- popKin * exp(bsvKin)
+    popKout <- 0.3
+    bsvKout <- 0
+    kout <- popKout * exp(bsvKout)
+    d/dt(R) <- kin * (1 - Imax * cp / (ic50 + cp)) - kout * R
+    R(0) <- kin / kout
+});
+rxUse(pk3cmtIdr1);
 
 Ribba2012 <- RxODE({
     k = 100

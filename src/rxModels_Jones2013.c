@@ -1497,7 +1497,7 @@ extern SEXP rxModels_Jones2013_model_vars(){
     SEXP names    = PROTECT(allocVector(STRSXP, 20));pro++;
     SEXP sNeedSort = PROTECT(allocVector(INTSXP,1));pro++;
     int *iNeedSort  = INTEGER(sNeedSort);
-    iNeedSort[0] = 42;
+    iNeedSort[0] = 84;
     SEXP sMtime = PROTECT(allocVector(INTSXP,1));pro++;
     int *iMtime  = INTEGER(sMtime);
     iMtime[0] = 0;
@@ -1510,7 +1510,7 @@ extern SEXP rxModels_Jones2013_model_vars(){
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 16));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1558070794;
+    INTEGER(timeInt)[0] = 1559282293;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 16));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;
@@ -1724,7 +1724,7 @@ extern SEXP rxModels_Jones2013_model_vars(){
     SET_STRING_ELT(inin,43,mkChar("Kpre"));
     REAL(ini)[43] = 0.6000000000000000;
     SET_STRING_ELT(inin,44,mkChar("fup"));
-    REAL(ini)[44] = 0.6810000000000000;
+    REAL(ini)[44] = 0.6810000000000001;
     SET_STRING_ELT(inin,45,mkChar("BP"));
     REAL(ini)[45] = 0.9800000000000000;
     SET_STRING_ELT(inin,46,mkChar("fumic"));
@@ -1738,7 +1738,7 @@ extern SEXP rxModels_Jones2013_model_vars(){
     SET_STRING_ELT(inin,50,mkChar("F"));
     REAL(ini)[50] = 1.0000000000000000;
     SET_STRING_ELT(inin,51,mkChar("CO"));
-    REAL(ini)[51] = 108.3299999999999983;
+    REAL(ini)[51] = 108.3300000000000000;
     SET_STRING_ELT(inin,52,mkChar("MPPGL"));
     REAL(ini)[52] = 45.0000000000000000;
     SET_STRING_ELT(names,0,mkChar("params"));
@@ -1781,9 +1781,9 @@ extern SEXP rxModels_Jones2013_model_vars(){
     SET_STRING_ELT(names,18,mkChar("timeId"));
     SET_VECTOR_ELT(lst,  18,timeInt);
     SET_STRING_ELT(names,19,mkChar("md5"));    SET_VECTOR_ELT(lst,  19,mmd5);    SET_STRING_ELT(mmd5n,0,mkChar("file_md5"));
-    SET_STRING_ELT(mmd5,0,mkChar("c999cba829cd4ddcc985ada5d8da350e"));
+    SET_STRING_ELT(mmd5,0,mkChar("21cda00d89b1b5cc6fc1c519135f6d7a"));
     SET_STRING_ELT(mmd5n,1,mkChar("parsed_md5"));
-    SET_STRING_ELT(mmd5,1,mkChar("c999cba829cd4ddcc985ada5d8da350e"));
+    SET_STRING_ELT(mmd5,1,mkChar("21cda00d89b1b5cc6fc1c519135f6d7a"));
     SET_STRING_ELT(trann,0,mkChar("lib.name"));
     SET_STRING_ELT(tran, 0,mkChar("rxModels"));
     SET_STRING_ELT(trann,1,mkChar("jac"));

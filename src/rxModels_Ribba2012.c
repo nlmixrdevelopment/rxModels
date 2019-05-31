@@ -546,7 +546,7 @@ extern SEXP rxModels_Ribba2012_model_vars(){
     SEXP names    = PROTECT(allocVector(STRSXP, 20));pro++;
     SEXP sNeedSort = PROTECT(allocVector(INTSXP,1));pro++;
     int *iNeedSort  = INTEGER(sNeedSort);
-    iNeedSort[0] = 42;
+    iNeedSort[0] = 84;
     SEXP sMtime = PROTECT(allocVector(INTSXP,1));pro++;
     int *iMtime  = INTEGER(sMtime);
     iMtime[0] = 0;
@@ -559,7 +559,7 @@ extern SEXP rxModels_Ribba2012_model_vars(){
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 4));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1558070797;
+    INTEGER(timeInt)[0] = 1559282355;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 4));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;
@@ -651,7 +651,7 @@ extern SEXP rxModels_Ribba2012_model_vars(){
     SET_STRING_ELT(inin,14,mkChar("eta.pt0"));
     REAL(ini)[14] = 0.0000000000000000;
     SET_STRING_ELT(inin,15,mkChar("tq0"));
-    REAL(ini)[15] = 41.2000000000000028;
+    REAL(ini)[15] = 41.2000000000000030;
     SET_STRING_ELT(inin,16,mkChar("eta.q0"));
     REAL(ini)[16] = 0.0000000000000000;
     SET_STRING_ELT(names,0,mkChar("params"));
@@ -694,9 +694,9 @@ extern SEXP rxModels_Ribba2012_model_vars(){
     SET_STRING_ELT(names,18,mkChar("timeId"));
     SET_VECTOR_ELT(lst,  18,timeInt);
     SET_STRING_ELT(names,19,mkChar("md5"));    SET_VECTOR_ELT(lst,  19,mmd5);    SET_STRING_ELT(mmd5n,0,mkChar("file_md5"));
-    SET_STRING_ELT(mmd5,0,mkChar("50c8b3f12e860216546bbcdadc939313"));
+    SET_STRING_ELT(mmd5,0,mkChar("8d2c0b98fcae5c10350179b868ceb202"));
     SET_STRING_ELT(mmd5n,1,mkChar("parsed_md5"));
-    SET_STRING_ELT(mmd5,1,mkChar("50c8b3f12e860216546bbcdadc939313"));
+    SET_STRING_ELT(mmd5,1,mkChar("8d2c0b98fcae5c10350179b868ceb202"));
     SET_STRING_ELT(trann,0,mkChar("lib.name"));
     SET_STRING_ELT(tran, 0,mkChar("rxModels"));
     SET_STRING_ELT(trann,1,mkChar("jac"));
