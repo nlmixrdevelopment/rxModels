@@ -546,7 +546,7 @@ extern SEXP rxModels_Ribba2012_model_vars(){
     SEXP names    = PROTECT(allocVector(STRSXP, 20));pro++;
     SEXP sNeedSort = PROTECT(allocVector(INTSXP,1));pro++;
     int *iNeedSort  = INTEGER(sNeedSort);
-    iNeedSort[0] = 84;
+    iNeedSort[0] = 0;
     SEXP sMtime = PROTECT(allocVector(INTSXP,1));pro++;
     int *iMtime  = INTEGER(sMtime);
     iMtime[0] = 0;
@@ -559,7 +559,7 @@ extern SEXP rxModels_Ribba2012_model_vars(){
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 4));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1559282355;
+    INTEGER(timeInt)[0] = 1559283267;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 4));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;

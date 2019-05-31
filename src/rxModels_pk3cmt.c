@@ -747,7 +747,7 @@ extern SEXP rxModels_pk3cmt_model_vars(){
     SEXP names    = PROTECT(allocVector(STRSXP, 20));pro++;
     SEXP sNeedSort = PROTECT(allocVector(INTSXP,1));pro++;
     int *iNeedSort  = INTEGER(sNeedSort);
-    iNeedSort[0] = 84;
+    iNeedSort[0] = 0;
     SEXP sMtime = PROTECT(allocVector(INTSXP,1));pro++;
     int *iMtime  = INTEGER(sMtime);
     iMtime[0] = 0;
@@ -760,7 +760,7 @@ extern SEXP rxModels_pk3cmt_model_vars(){
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 0));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1559282338;
+    INTEGER(timeInt)[0] = 1559283254;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;
