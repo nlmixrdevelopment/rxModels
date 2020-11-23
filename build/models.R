@@ -1,4 +1,5 @@
 library(RxODE)
+
 message("Jones2013")
 Jones2013 <- RxODE({
     ## 1: Jones H, Rowland-Yeo K. Basic concepts in physiologically based
@@ -223,7 +224,7 @@ pk1cmt <- RxODE({
     rate(central) <- popRateCentral *  exp(bsvRateCentral)
     dur(central) <- popDurCentral * exp(bsvDurCentral)
     cp <- linCmt()
-});
+})
 rxUse(pk1cmt);
 
 
@@ -642,7 +643,7 @@ Ribba2012 <- RxODE({
 
 rxUse(Ribba2012)
 
-rxUse();
+rxUse()
 
 devtools::load_all()
 devtools::document()

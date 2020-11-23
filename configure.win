@@ -1,0 +1,5 @@
+#!/bin/sh
+# This should be used for both configure and configure.win
+echo "unlink('src', recursive=TRUE);RxODE::rxUse()" > build.R
+${R_HOME}/bin/Rscript build.R
+rm build.R

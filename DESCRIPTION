@@ -13,4 +13,4 @@ License: GPL (>= 2), RxODE
 Encoding: UTF-8
 LazyData: true
 Biarch: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1

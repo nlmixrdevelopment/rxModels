@@ -4,7 +4,8 @@
 \name{pk1cmt}
 \alias{pk1cmt}
 \title{pk1cmt RxODE model}
-\format{An \emph{RxODE} model with 14 parameters, 2 ODE states, and 1 calc vars.
+\format{
+An \emph{RxODE} model with 14 parameters, 2 ODE states, and 1 calc vars.
 
 \emph{Parameters (pk1cmt$params)}
 
@@ -36,7 +37,8 @@
 
 \describe{
   \item{cp}{}
-}}
+}
+}
 \usage{
 pk1cmt
 }

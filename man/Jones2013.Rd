@@ -4,7 +4,8 @@
 \name{Jones2013}
 \alias{Jones2013}
 \title{Jones2013 Human PBPK RxODE model}
-\format{An \emph{RxODE} model with 53 parameters, 16 ODE states, and 1 calc vars.
+\format{
+An \emph{RxODE} model with 53 parameters, 16 ODE states, and 1 calc vars.
 
 \emph{Parameters (Jones2013$params)}
 
@@ -227,7 +228,8 @@ RxODE({
     d/dt(D) ~ -Absorption
     Cvenous ~ Ave/Vve
     Cp = Cvenous/BP
-})}
+})
+}
 \usage{
 Jones2013
 }

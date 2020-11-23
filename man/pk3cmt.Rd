@@ -4,7 +4,8 @@
 \name{pk3cmt}
 \alias{pk3cmt}
 \title{pk3cmt RxODE model}
-\format{An \emph{RxODE} model with 22 parameters, 2 ODE states, and 1 calc vars.
+\format{
+An \emph{RxODE} model with 22 parameters, 2 ODE states, and 1 calc vars.
 
 \emph{Parameters (pk3cmt$params)}
 
@@ -44,7 +45,8 @@
 
 \describe{
   \item{cp}{Concentration in the plasma}
-}}
+}
+}
 \usage{
 pk3cmt
 }

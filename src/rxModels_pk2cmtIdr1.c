@@ -1,7 +1,12 @@
 #include <RxODE.h>
-#include <RxODE_model.h>
+#include <RxODE_model_shared.h>
+#define _CENTRAL_ 2
+#include <RxODE_model_shared.h>
 #define __MAX_PROD__ 0
 #define _CMT CMT
+#define _SYNC_simeps_ for (int _svari=_solveData->neps; _svari--;){  if (_solveData->op->svar[_svari] == 0) {popCl = _PP[0];};   if (_solveData->op->svar[_svari] == 1) {popV = _PP[1];};   if (_solveData->op->svar[_svari] == 2) {popKa = _PP[2];};   if (_solveData->op->svar[_svari] == 3) {popVp = _PP[3];};   if (_solveData->op->svar[_svari] == 4) {popQ = _PP[4];};   if (_solveData->op->svar[_svari] == 5) {bsvCl = _PP[5];};   if (_solveData->op->svar[_svari] == 6) {bsvV = _PP[6];};   if (_solveData->op->svar[_svari] == 7) {bsvKa = _PP[7];};   if (_solveData->op->svar[_svari] == 8) {bsvVp = _PP[8];};   if (_solveData->op->svar[_svari] == 9) {bsvQ = _PP[9];};   if (_solveData->op->svar[_svari] == 10) {popLagDepot = _PP[10];};   if (_solveData->op->svar[_svari] == 11) {popLagCentral = _PP[11];};   if (_solveData->op->svar[_svari] == 12) {popRateCentral = _PP[12];};   if (_solveData->op->svar[_svari] == 13) {popDurCentral = _PP[13];};   if (_solveData->op->svar[_svari] == 14) {bsvLagDepot = _PP[14];};   if (_solveData->op->svar[_svari] == 15) {bsvLagCentral = _PP[15];};   if (_solveData->op->svar[_svari] == 16) {bsvRateCentral = _PP[16];};   if (_solveData->op->svar[_svari] == 17) {bsvDurCentral = _PP[17];};   if (_solveData->op->svar[_svari] == 18) {bsvImax = _PP[18];};   if (_solveData->op->svar[_svari] == 19) {popImax = _PP[19];};   if (_solveData->op->svar[_svari] == 20) {popIc50 = _PP[20];};   if (_solveData->op->svar[_svari] == 21) {bsvIc50 = _PP[21];};   if (_solveData->op->svar[_svari] == 22) {popKin = _PP[22];};   if (_solveData->op->svar[_svari] == 23) {bsvKin = _PP[23];};   if (_solveData->op->svar[_svari] == 24) {popKout = _PP[24];};   if (_solveData->op->svar[_svari] == 25) {bsvKout = _PP[25];};   if (_solveData->op->svar[_svari] == 26) {gamma = _PP[26];}; }
+#define _SYNC_simeta_ for (int _ovari=_solveData->neta; _ovari--;){  if (_solveData->op->ovar[_ovari] == 0) {popCl = _PP[0];};   if (_solveData->op->ovar[_ovari] == 1) {popV = _PP[1];};   if (_solveData->op->ovar[_ovari] == 2) {popKa = _PP[2];};   if (_solveData->op->ovar[_ovari] == 3) {popVp = _PP[3];};   if (_solveData->op->ovar[_ovari] == 4) {popQ = _PP[4];};   if (_solveData->op->ovar[_ovari] == 5) {bsvCl = _PP[5];};   if (_solveData->op->ovar[_ovari] == 6) {bsvV = _PP[6];};   if (_solveData->op->ovar[_ovari] == 7) {bsvKa = _PP[7];};   if (_solveData->op->ovar[_ovari] == 8) {bsvVp = _PP[8];};   if (_solveData->op->ovar[_ovari] == 9) {bsvQ = _PP[9];};   if (_solveData->op->ovar[_ovari] == 10) {popLagDepot = _PP[10];};   if (_solveData->op->ovar[_ovari] == 11) {popLagCentral = _PP[11];};   if (_solveData->op->ovar[_ovari] == 12) {popRateCentral = _PP[12];};   if (_solveData->op->ovar[_ovari] == 13) {popDurCentral = _PP[13];};   if (_solveData->op->ovar[_ovari] == 14) {bsvLagDepot = _PP[14];};   if (_solveData->op->ovar[_ovari] == 15) {bsvLagCentral = _PP[15];};   if (_solveData->op->ovar[_ovari] == 16) {bsvRateCentral = _PP[16];};   if (_solveData->op->ovar[_ovari] == 17) {bsvDurCentral = _PP[17];};   if (_solveData->op->ovar[_ovari] == 18) {bsvImax = _PP[18];};   if (_solveData->op->ovar[_ovari] == 19) {popImax = _PP[19];};   if (_solveData->op->ovar[_ovari] == 20) {popIc50 = _PP[20];};   if (_solveData->op->ovar[_ovari] == 21) {bsvIc50 = _PP[21];};   if (_solveData->op->ovar[_ovari] == 22) {popKin = _PP[22];};   if (_solveData->op->ovar[_ovari] == 23) {bsvKin = _PP[23];};   if (_solveData->op->ovar[_ovari] == 24) {popKout = _PP[24];};   if (_solveData->op->ovar[_ovari] == 25) {bsvKout = _PP[25];};   if (_solveData->op->ovar[_ovari] == 26) {gamma = _PP[26];}; }
+
 extern void  rxModels_pk2cmtIdr1_ode_solver_solvedata (rx_solve *solve){
   _solveData = solve;
 }
@@ -9,18 +14,15 @@ extern rx_solve *rxModels_pk2cmtIdr1_ode_solver_get_solvedata(){
   return _solveData;
 }
 SEXP rxModels_pk2cmtIdr1_model_vars();
-double _theta[26];
-extern double* rxModels_pk2cmtIdr1_theta(double *theta){
-  _theta[0] = 1.0000000000000000; _theta[1] = 20.0000000000000000; _theta[2] = 1.0000000000000000; _theta[3] = 10.0000000000000000; _theta[4] = 2.0000000000000000; _theta[5] = 0.0000000000000000; _theta[6] = 0.0000000000000000; _theta[7] = 0.0000000000000000; _theta[8] = 0.0000000000000000; _theta[9] = 0.0000000000000000; _theta[10] = 0.0000000000000000; _theta[11] = 0.0000000000000000; _theta[12] = 0.0000000000000000; _theta[13] = 0.0000000000000000; _theta[14] = 0.0000000000000000; _theta[15] = 0.0000000000000000; _theta[16] = 0.0000000000000000; _theta[17] = 0.0000000000000000; _theta[18] = 0.0000000000000000; _theta[19] = 0.9999000000000000; _theta[20] = 100.0000000000000000; _theta[21] = 0.0000000000000000; _theta[22] = 9.0000000000000000; _theta[23] = 0.0000000000000000; _theta[24] = 0.3000000000000000; _theta[25] = 0.0000000000000000;
-  return _theta;
-}
 
 
 // prj-specific differential eqns
-void rxModels_pk2cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, double *__DDtStateVar__)
+void rxModels_pk2cmtIdr1_dydt(int *_neq, double __t, double *__zzStateVar__, double *__DDtStateVar__)
 {
   int _cSub = _neq[1];
-  double   popCl,
+  double t = __t + _solveData->subjects[_neq[1]].curShift;
+  (void)t;
+    double   popCl,
   popV,
   popKa,
   popVp,
@@ -43,26 +45,6 @@ void rxModels_pk2cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   bsvLagCentral,
   bsvRateCentral,
   bsvDurCentral,
-  rx_ka,
-  rx_rate,
-  rx_dur,
-  rx_tlag,
-  rx_tlag2,
-  rx_F,
-  rx_F2,
-  rx_v,
-  rx_k,
-  rx_k12,
-  rx_k21,
-  rx_beta,
-  rx_alpha,
-  rx_A,
-  rx_B,
-  rx_A2,
-  rx_B2,
-  rx_gamma,
-  rx_C,
-  rx_C2,
   cp,
   bsvImax,
   popImax,
@@ -77,6 +59,7 @@ void rxModels_pk2cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -103,26 +86,6 @@ void rxModels_pk2cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   (void)bsvLagCentral;
   (void)bsvRateCentral;
   (void)bsvDurCentral;
-  (void)rx_ka;
-  (void)rx_rate;
-  (void)rx_dur;
-  (void)rx_tlag;
-  (void)rx_tlag2;
-  (void)rx_F;
-  (void)rx_F2;
-  (void)rx_v;
-  (void)rx_k;
-  (void)rx_k12;
-  (void)rx_k21;
-  (void)rx_beta;
-  (void)rx_alpha;
-  (void)rx_A;
-  (void)rx_B;
-  (void)rx_A2;
-  (void)rx_B2;
-  (void)rx_gamma;
-  (void)rx_C;
-  (void)rx_C2;
   (void)cp;
   (void)bsvImax;
   (void)popImax;
@@ -137,9 +100,16 @@ void rxModels_pk2cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
 
-  _update_par_ptr(t, _cSub, _solveData, _idx);
+  cp = _PL[0];
+  Imax = _PL[1];
+  ic50 = _PL[2];
+  kin = _PL[3];
+  kout = _PL[4];
+
+  _update_par_ptr(__t, _cSub, _solveData, _idx);
   popCl = _PP[0];
   popV = _PP[1];
   popKa = _PP[2];
@@ -166,6 +136,7 @@ void rxModels_pk2cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   bsvKin = _PP[23];
   popKout = _PP[24];
   bsvKout = _PP[25];
+  gamma = _PP[26];
 
   R = __zzStateVar__[0]*((double)(_ON[0]));
 
@@ -174,40 +145,22 @@ void rxModels_pk2cmtIdr1_dydt(int *_neq, double t, double *__zzStateVar__, doubl
   ka =popKa*exp(bsvKa);
   q =popQ*exp(bsvQ);
   vp =popVp*exp(bsvVp);
-  rx_ka =ka;
-  rx_rate =popRateCentral*exp(bsvRateCentral);
-  rx_dur =popDurCentral*exp(bsvDurCentral);
-  rx_tlag =popLagDepot*exp(bsvLagDepot);
-  rx_tlag2 =popLagCentral*exp(bsvLagCentral);
-  rx_F =1;
-  rx_F2 =1;
-  rx_v =v;
-  rx_k =cl/safe_zero(v);
-  rx_k12 =q/safe_zero(v);
-  rx_k21 =q/safe_zero(vp);
-  rx_beta =0.5*(rx_k12+rx_k21+rx_k-sqrt((rx_k12+rx_k21+rx_k)*(rx_k12+rx_k21+rx_k)-4.0*rx_k21*rx_k));
-  rx_alpha =rx_k21*rx_k/safe_zero(rx_beta);
-  rx_A =rx_ka/safe_zero((rx_ka-rx_alpha))*(rx_alpha-rx_k21)/safe_zero((rx_alpha-rx_beta))/safe_zero(rx_v);
-  rx_B =rx_ka/safe_zero((rx_ka-rx_beta))*(rx_beta-rx_k21)/safe_zero((rx_beta-rx_alpha))/safe_zero(rx_v);
-  rx_A2 =(rx_alpha-rx_k21)/safe_zero((rx_alpha-rx_beta))/safe_zero(rx_v);
-  rx_B2 =(rx_beta-rx_k21)/safe_zero((rx_beta-rx_alpha))/safe_zero(rx_v);
-  rx_gamma =0;
-  rx_C =0;
-  rx_C2 =0;
-  cp=solveLinB(_solveData, _cSub,t,1,rx_A,rx_A2,rx_alpha,rx_B,rx_B2,rx_beta,rx_C,rx_C2,rx_gamma,rx_ka,rx_tlag,rx_tlag2,rx_F,rx_F2,rx_rate,rx_dur);
+  cp=linCmtA(_solveData, _cSub,t,1,2,1,cl,v,q,vp,0.0,0.0,popLagDepot*exp(bsvLagDepot),1.0,0.0,0.0,ka,popLagCentral*exp(bsvLagCentral),1.0,popRateCentral*exp(bsvRateCentral),popDurCentral*exp(bsvDurCentral));
   logitImax =-_safe_log(1/safe_zero(popImax)-1)+bsvImax;
   Imax=1/safe_zero((1+exp(-logitImax)));
   ic50=popIc50*exp(bsvIc50);
   kin=popKin*exp(bsvKin);
   kout=popKout*exp(bsvKout);
-  __DDtStateVar__[0] = ((double)(_ON[0]))*(_IR[0] + kin*(1-Imax*cp/safe_zero((ic50+cp)))-kout*R);
+  __DDtStateVar__[0] = ((double)(_ON[0]))*(_IR[0] + kin*(1-Imax*R_pow(_as_dbleps(cp),gamma)/safe_zero((R_pow(_as_dbleps(ic50),gamma)+R_pow(_as_dbleps(cp),gamma))))-kout*R);
   (&_solveData->subjects[_cSub])->dadt_counter[0]++;
 }
 
 // Jacobian derived vars
-void rxModels_pk2cmtIdr1_calc_jac(int *_neq, double t, double *__zzStateVar__, double *__PDStateVar__, unsigned int __NROWPD__) {
+void rxModels_pk2cmtIdr1_calc_jac(int *_neq, double __t, double *__zzStateVar__, double *__PDStateVar__, unsigned int __NROWPD__) {
   int _cSub=_neq[1];
-  (&_solveData->subjects[_cSub])->jac_counter[0]++;
+  double t = __t + _solveData->subjects[_neq[1]].curShift;
+  (void)t;
+    (&_solveData->subjects[_cSub])->jac_counter[0]++;
 }
 // Functional based initial conditions.
 void rxModels_pk2cmtIdr1_inis(int _cSub, double *__zzStateVar__){
@@ -235,26 +188,6 @@ void rxModels_pk2cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   bsvLagCentral,
   bsvRateCentral,
   bsvDurCentral,
-  rx_ka,
-  rx_rate,
-  rx_dur,
-  rx_tlag,
-  rx_tlag2,
-  rx_F,
-  rx_F2,
-  rx_v,
-  rx_k,
-  rx_k12,
-  rx_k21,
-  rx_beta,
-  rx_alpha,
-  rx_A,
-  rx_B,
-  rx_A2,
-  rx_B2,
-  rx_gamma,
-  rx_C,
-  rx_C2,
   cp,
   bsvImax,
   popImax,
@@ -269,6 +202,7 @@ void rxModels_pk2cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -295,26 +229,6 @@ void rxModels_pk2cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   (void)bsvLagCentral;
   (void)bsvRateCentral;
   (void)bsvDurCentral;
-  (void)rx_ka;
-  (void)rx_rate;
-  (void)rx_dur;
-  (void)rx_tlag;
-  (void)rx_tlag2;
-  (void)rx_F;
-  (void)rx_F2;
-  (void)rx_v;
-  (void)rx_k;
-  (void)rx_k12;
-  (void)rx_k21;
-  (void)rx_beta;
-  (void)rx_alpha;
-  (void)rx_A;
-  (void)rx_B;
-  (void)rx_A2;
-  (void)rx_B2;
-  (void)rx_gamma;
-  (void)rx_C;
-  (void)rx_C2;
   (void)cp;
   (void)bsvImax;
   (void)popImax;
@@ -329,7 +243,14 @@ void rxModels_pk2cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
+
+  cp = _PL[0];
+  Imax = _PL[1];
+  ic50 = _PL[2];
+  kin = _PL[3];
+  kout = _PL[4];
 
   _update_par_ptr(0.0, _cSub, _solveData, _idx);
   popCl = _PP[0];
@@ -358,6 +279,7 @@ void rxModels_pk2cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   bsvKin = _PP[23];
   popKout = _PP[24];
   bsvKout = _PP[25];
+  gamma = _PP[26];
 
   R = __zzStateVar__[0]*((double)(_ON[0]));
 
@@ -366,27 +288,7 @@ void rxModels_pk2cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   ka =popKa*exp(bsvKa);
   q =popQ*exp(bsvQ);
   vp =popVp*exp(bsvVp);
-  rx_ka =ka;
-  rx_rate =popRateCentral*exp(bsvRateCentral);
-  rx_dur =popDurCentral*exp(bsvDurCentral);
-  rx_tlag =popLagDepot*exp(bsvLagDepot);
-  rx_tlag2 =popLagCentral*exp(bsvLagCentral);
-  rx_F =1;
-  rx_F2 =1;
-  rx_v =v;
-  rx_k =cl/safe_zero(v);
-  rx_k12 =q/safe_zero(v);
-  rx_k21 =q/safe_zero(vp);
-  rx_beta =0.5*(rx_k12+rx_k21+rx_k-sqrt((rx_k12+rx_k21+rx_k)*(rx_k12+rx_k21+rx_k)-4.0*rx_k21*rx_k));
-  rx_alpha =rx_k21*rx_k/safe_zero(rx_beta);
-  rx_A =rx_ka/safe_zero((rx_ka-rx_alpha))*(rx_alpha-rx_k21)/safe_zero((rx_alpha-rx_beta))/safe_zero(rx_v);
-  rx_B =rx_ka/safe_zero((rx_ka-rx_beta))*(rx_beta-rx_k21)/safe_zero((rx_beta-rx_alpha))/safe_zero(rx_v);
-  rx_A2 =(rx_alpha-rx_k21)/safe_zero((rx_alpha-rx_beta))/safe_zero(rx_v);
-  rx_B2 =(rx_beta-rx_k21)/safe_zero((rx_beta-rx_alpha))/safe_zero(rx_v);
-  rx_gamma =0;
-  rx_C =0;
-  rx_C2 =0;
-  cp=solveLinB(_solveData, _cSub,t,1,rx_A,rx_A2,rx_alpha,rx_B,rx_B2,rx_beta,rx_C,rx_C2,rx_gamma,rx_ka,rx_tlag,rx_tlag2,rx_F,rx_F2,rx_rate,rx_dur);
+  cp=linCmtA(_solveData, _cSub,t,1,2,1,cl,v,q,vp,0.0,0.0,popLagDepot*exp(bsvLagDepot),1.0,0.0,0.0,ka,popLagCentral*exp(bsvLagCentral),1.0,popRateCentral*exp(bsvRateCentral),popDurCentral*exp(bsvDurCentral));
   logitImax =-_safe_log(1/safe_zero(popImax)-1)+bsvImax;
   Imax=1/safe_zero((1+exp(-logitImax)));
   ic50=popIc50*exp(bsvIc50);
@@ -396,8 +298,10 @@ void rxModels_pk2cmtIdr1_inis(int _cSub, double *__zzStateVar__){
   __zzStateVar__[0]=((double)(_ON[0]))*(R);
 }
 // prj-specific derived vars
-void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, double *_lhs) {
-  double   __DDtStateVar_0__,
+void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double __t, double *__zzStateVar__, double *_lhs) {
+   double t = __t + _solveData->subjects[_cSub].curShift;
+  (void)t;
+    double   __DDtStateVar_0__,
   popCl,
   popV,
   popKa,
@@ -421,26 +325,6 @@ void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   bsvLagCentral,
   bsvRateCentral,
   bsvDurCentral,
-  rx_ka,
-  rx_rate,
-  rx_dur,
-  rx_tlag,
-  rx_tlag2,
-  rx_F,
-  rx_F2,
-  rx_v,
-  rx_k,
-  rx_k12,
-  rx_k21,
-  rx_beta,
-  rx_alpha,
-  rx_A,
-  rx_B,
-  rx_A2,
-  rx_B2,
-  rx_gamma,
-  rx_C,
-  rx_C2,
   cp,
   bsvImax,
   popImax,
@@ -455,6 +339,7 @@ void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -482,26 +367,6 @@ void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   (void)bsvLagCentral;
   (void)bsvRateCentral;
   (void)bsvDurCentral;
-  (void)rx_ka;
-  (void)rx_rate;
-  (void)rx_dur;
-  (void)rx_tlag;
-  (void)rx_tlag2;
-  (void)rx_F;
-  (void)rx_F2;
-  (void)rx_v;
-  (void)rx_k;
-  (void)rx_k12;
-  (void)rx_k21;
-  (void)rx_beta;
-  (void)rx_alpha;
-  (void)rx_A;
-  (void)rx_B;
-  (void)rx_A2;
-  (void)rx_B2;
-  (void)rx_gamma;
-  (void)rx_C;
-  (void)rx_C2;
   (void)cp;
   (void)bsvImax;
   (void)popImax;
@@ -516,9 +381,16 @@ void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
 
-  _update_par_ptr(t, _cSub, _solveData, _idx);
+  cp = _PL[0];
+  Imax = _PL[1];
+  ic50 = _PL[2];
+  kin = _PL[3];
+  kout = _PL[4];
+
+  _update_par_ptr(__t, _cSub, _solveData, _idx);
   popCl = _PP[0];
   popV = _PP[1];
   popKa = _PP[2];
@@ -545,6 +417,7 @@ void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   bsvKin = _PP[23];
   popKout = _PP[24];
   bsvKout = _PP[25];
+  gamma = _PP[26];
 
   R = __zzStateVar__[0]*((double)(_ON[0]));
 
@@ -553,33 +426,13 @@ void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   ka =popKa*exp(bsvKa);
   q =popQ*exp(bsvQ);
   vp =popVp*exp(bsvVp);
-  rx_ka =ka;
-  rx_rate =popRateCentral*exp(bsvRateCentral);
-  rx_dur =popDurCentral*exp(bsvDurCentral);
-  rx_tlag =popLagDepot*exp(bsvLagDepot);
-  rx_tlag2 =popLagCentral*exp(bsvLagCentral);
-  rx_F =1;
-  rx_F2 =1;
-  rx_v =v;
-  rx_k =cl/safe_zero(v);
-  rx_k12 =q/safe_zero(v);
-  rx_k21 =q/safe_zero(vp);
-  rx_beta =0.5*(rx_k12+rx_k21+rx_k-sqrt((rx_k12+rx_k21+rx_k)*(rx_k12+rx_k21+rx_k)-4.0*rx_k21*rx_k));
-  rx_alpha =rx_k21*rx_k/safe_zero(rx_beta);
-  rx_A =rx_ka/safe_zero((rx_ka-rx_alpha))*(rx_alpha-rx_k21)/safe_zero((rx_alpha-rx_beta))/safe_zero(rx_v);
-  rx_B =rx_ka/safe_zero((rx_ka-rx_beta))*(rx_beta-rx_k21)/safe_zero((rx_beta-rx_alpha))/safe_zero(rx_v);
-  rx_A2 =(rx_alpha-rx_k21)/safe_zero((rx_alpha-rx_beta))/safe_zero(rx_v);
-  rx_B2 =(rx_beta-rx_k21)/safe_zero((rx_beta-rx_alpha))/safe_zero(rx_v);
-  rx_gamma =0;
-  rx_C =0;
-  rx_C2 =0;
-  cp=solveLinB(_solveData, _cSub,t,1,rx_A,rx_A2,rx_alpha,rx_B,rx_B2,rx_beta,rx_C,rx_C2,rx_gamma,rx_ka,rx_tlag,rx_tlag2,rx_F,rx_F2,rx_rate,rx_dur);
+  cp=linCmtA(_solveData, _cSub,t,1,2,1,cl,v,q,vp,0.0,0.0,popLagDepot*exp(bsvLagDepot),1.0,0.0,0.0,ka,popLagCentral*exp(bsvLagCentral),1.0,popRateCentral*exp(bsvRateCentral),popDurCentral*exp(bsvDurCentral));
   logitImax =-_safe_log(1/safe_zero(popImax)-1)+bsvImax;
   Imax=1/safe_zero((1+exp(-logitImax)));
   ic50=popIc50*exp(bsvIc50);
   kin=popKin*exp(bsvKin);
   kout=popKout*exp(bsvKout);
-  __DDtStateVar_0__ = ((double)(_ON[0]))*(_IR[0] + kin*(1-Imax*cp/safe_zero((ic50+cp)))-kout*R);
+  __DDtStateVar_0__ = ((double)(_ON[0]))*(_IR[0] + kin*(1-Imax*R_pow(_as_dbleps(cp),gamma)/safe_zero((R_pow(_as_dbleps(ic50),gamma)+R_pow(_as_dbleps(cp),gamma))))-kout*R);
 
   _lhs[0]=cp;
   _lhs[1]=Imax;
@@ -588,12 +441,18 @@ void rxModels_pk2cmtIdr1_calc_lhs(int _cSub, double t, double *__zzStateVar__, d
   _lhs[4]=kout;
 }
 // Functional based bioavailability
-double rxModels_pk2cmtIdr1_F(int _cSub,  int _cmt, double _amt, double t){
+double rxModels_pk2cmtIdr1_F(int _cSub,  int _cmt, double _amt, double __t, double *__zzStateVar__){
  return _amt;
 }
 // Functional based absorption lag
-double rxModels_pk2cmtIdr1_Lag(int _cSub,  int _cmt, double t){
- return t;
+double rxModels_pk2cmtIdr1_Lag(int _cSub,  int _cmt, double __t){
+  double *restrict _alag = _solveData->subjects[_cSub].alag;
+  (void)_alag; 
+  double t = __t + _solveData->subjects[_cSub].curShift;
+  (void)t;
+    _alag[2]=0.0;
+  _alag[1]=0.0;
+  _alag[0]=0.0;
   double   popCl,
   popV,
   popKa,
@@ -617,26 +476,6 @@ double rxModels_pk2cmtIdr1_Lag(int _cSub,  int _cmt, double t){
   bsvLagCentral,
   bsvRateCentral,
   bsvDurCentral,
-  rx_ka,
-  rx_rate,
-  rx_dur,
-  rx_tlag,
-  rx_tlag2,
-  rx_F,
-  rx_F2,
-  rx_v,
-  rx_k,
-  rx_k12,
-  rx_k21,
-  rx_beta,
-  rx_alpha,
-  rx_A,
-  rx_B,
-  rx_A2,
-  rx_B2,
-  rx_gamma,
-  rx_C,
-  rx_C2,
   cp,
   bsvImax,
   popImax,
@@ -651,6 +490,7 @@ double rxModels_pk2cmtIdr1_Lag(int _cSub,  int _cmt, double t){
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -677,26 +517,6 @@ double rxModels_pk2cmtIdr1_Lag(int _cSub,  int _cmt, double t){
   (void)bsvLagCentral;
   (void)bsvRateCentral;
   (void)bsvDurCentral;
-  (void)rx_ka;
-  (void)rx_rate;
-  (void)rx_dur;
-  (void)rx_tlag;
-  (void)rx_tlag2;
-  (void)rx_F;
-  (void)rx_F2;
-  (void)rx_v;
-  (void)rx_k;
-  (void)rx_k12;
-  (void)rx_k21;
-  (void)rx_beta;
-  (void)rx_alpha;
-  (void)rx_A;
-  (void)rx_B;
-  (void)rx_A2;
-  (void)rx_B2;
-  (void)rx_gamma;
-  (void)rx_C;
-  (void)rx_C2;
   (void)cp;
   (void)bsvImax;
   (void)popImax;
@@ -711,7 +531,14 @@ double rxModels_pk2cmtIdr1_Lag(int _cSub,  int _cmt, double t){
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
+
+  cp = _PL[0];
+  Imax = _PL[1];
+  ic50 = _PL[2];
+  kin = _PL[3];
+  kout = _PL[4];
 
   _update_par_ptr(NA_REAL, _cSub, _solveData, _idx);
   popCl = _PP[0];
@@ -740,11 +567,34 @@ double rxModels_pk2cmtIdr1_Lag(int _cSub,  int _cmt, double t){
   bsvKin = _PP[23];
   popKout = _PP[24];
   bsvKout = _PP[25];
+  gamma = _PP[26];
 
+  R = NA_REAL;
+
+  cl =popCl*exp(bsvCl);
+  v =popV*exp(bsvV);
+  ka =popKa*exp(bsvKa);
+  q =popQ*exp(bsvQ);
+  vp =popVp*exp(bsvVp);
+  _alag[(&_solveData->subjects[_cSub])->linCmt] = popLagDepot*exp(bsvLagDepot);
+  _alag[(&_solveData->subjects[_cSub])->linCmt+1] = popLagCentral*exp(bsvLagCentral);
+  logitImax =-_safe_log(1/safe_zero(popImax)-1)+bsvImax;
+  Imax=1/safe_zero((1+exp(-logitImax)));
+  ic50=popIc50*exp(bsvIc50);
+  kin=popKin*exp(bsvKin);
+  kout=popKout*exp(bsvKout);
+
+  return t + _alag[_cmt] - _solveData->subjects[_cSub].curShift;
 }
 // Modeled zero-order rate
-double rxModels_pk2cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
- return 0.0;
+double rxModels_pk2cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double __t){
+  double *restrict _rate= _solveData->subjects[_cSub].cRate;
+  (void)_rate;
+   double t = __t + _solveData->subjects[_cSub].curShift;
+  (void)t;
+    _rate[2]=0.0;
+  _rate[1]=0.0;
+  _rate[0]=0.0;
   double   popCl,
   popV,
   popKa,
@@ -768,26 +618,6 @@ double rxModels_pk2cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
   bsvLagCentral,
   bsvRateCentral,
   bsvDurCentral,
-  rx_ka,
-  rx_rate,
-  rx_dur,
-  rx_tlag,
-  rx_tlag2,
-  rx_F,
-  rx_F2,
-  rx_v,
-  rx_k,
-  rx_k12,
-  rx_k21,
-  rx_beta,
-  rx_alpha,
-  rx_A,
-  rx_B,
-  rx_A2,
-  rx_B2,
-  rx_gamma,
-  rx_C,
-  rx_C2,
   cp,
   bsvImax,
   popImax,
@@ -802,6 +632,7 @@ double rxModels_pk2cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
   popKout,
   bsvKout,
   kout,
+  gamma,
   R;
 
   (void)t;
@@ -828,26 +659,6 @@ double rxModels_pk2cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
   (void)bsvLagCentral;
   (void)bsvRateCentral;
   (void)bsvDurCentral;
-  (void)rx_ka;
-  (void)rx_rate;
-  (void)rx_dur;
-  (void)rx_tlag;
-  (void)rx_tlag2;
-  (void)rx_F;
-  (void)rx_F2;
-  (void)rx_v;
-  (void)rx_k;
-  (void)rx_k12;
-  (void)rx_k21;
-  (void)rx_beta;
-  (void)rx_alpha;
-  (void)rx_A;
-  (void)rx_B;
-  (void)rx_A2;
-  (void)rx_B2;
-  (void)rx_gamma;
-  (void)rx_C;
-  (void)rx_C2;
   (void)cp;
   (void)bsvImax;
   (void)popImax;
@@ -862,7 +673,14 @@ double rxModels_pk2cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
   (void)popKout;
   (void)bsvKout;
   (void)kout;
+  (void)gamma;
   (void)R;
+
+  cp = _PL[0];
+  Imax = _PL[1];
+  ic50 = _PL[2];
+  kin = _PL[3];
+  kout = _PL[4];
 
   _update_par_ptr(NA_REAL, _cSub, _solveData, _idx);
   popCl = _PP[0];
@@ -891,47 +709,231 @@ double rxModels_pk2cmtIdr1_Rate(int _cSub,  int _cmt, double _amt, double t){
   bsvKin = _PP[23];
   popKout = _PP[24];
   bsvKout = _PP[25];
+  gamma = _PP[26];
 
+  R = NA_REAL;
+
+  cl =popCl*exp(bsvCl);
+  v =popV*exp(bsvV);
+  ka =popKa*exp(bsvKa);
+  q =popQ*exp(bsvQ);
+  vp =popVp*exp(bsvVp);
+  _rate[(&_solveData->subjects[_cSub])->linCmt+1] = popRateCentral*exp(bsvRateCentral);
+  logitImax =-_safe_log(1/safe_zero(popImax)-1)+bsvImax;
+  Imax=1/safe_zero((1+exp(-logitImax)));
+  ic50=popIc50*exp(bsvIc50);
+  kin=popKin*exp(bsvKin);
+  kout=popKout*exp(bsvKout);
+
+  return _rate[_cmt];
 }
 // Modeled zero-order duration
-double rxModels_pk2cmtIdr1_Dur(int _cSub,  int _cmt, double _amt, double t){
- return 0.0;
+double rxModels_pk2cmtIdr1_Dur(int _cSub,  int _cmt, double _amt, double __t){
+  double *restrict _dur = _solveData->subjects[_cSub].cDur;
+  (void)_dur;
+    double t = __t + _solveData->subjects[_cSub].curShift;
+  (void)t;
+    _dur[2]=0.0;
+  _dur[1]=0.0;
+  _dur[0]=0.0;
+  double   popCl,
+  popV,
+  popKa,
+  popVp,
+  popQ,
+  bsvCl,
+  bsvV,
+  bsvKa,
+  bsvVp,
+  bsvQ,
+  cl,
+  v,
+  ka,
+  q,
+  vp,
+  popLagDepot,
+  popLagCentral,
+  popRateCentral,
+  popDurCentral,
+  bsvLagDepot,
+  bsvLagCentral,
+  bsvRateCentral,
+  bsvDurCentral,
+  cp,
+  bsvImax,
+  popImax,
+  logitImax,
+  Imax,
+  popIc50,
+  bsvIc50,
+  ic50,
+  popKin,
+  bsvKin,
+  kin,
+  popKout,
+  bsvKout,
+  kout,
+  gamma,
+  R;
+
+  (void)t;
+  (void)popCl;
+  (void)popV;
+  (void)popKa;
+  (void)popVp;
+  (void)popQ;
+  (void)bsvCl;
+  (void)bsvV;
+  (void)bsvKa;
+  (void)bsvVp;
+  (void)bsvQ;
+  (void)cl;
+  (void)v;
+  (void)ka;
+  (void)q;
+  (void)vp;
+  (void)popLagDepot;
+  (void)popLagCentral;
+  (void)popRateCentral;
+  (void)popDurCentral;
+  (void)bsvLagDepot;
+  (void)bsvLagCentral;
+  (void)bsvRateCentral;
+  (void)bsvDurCentral;
+  (void)cp;
+  (void)bsvImax;
+  (void)popImax;
+  (void)logitImax;
+  (void)Imax;
+  (void)popIc50;
+  (void)bsvIc50;
+  (void)ic50;
+  (void)popKin;
+  (void)bsvKin;
+  (void)kin;
+  (void)popKout;
+  (void)bsvKout;
+  (void)kout;
+  (void)gamma;
+  (void)R;
+
+  cp = _PL[0];
+  Imax = _PL[1];
+  ic50 = _PL[2];
+  kin = _PL[3];
+  kout = _PL[4];
+
+  _update_par_ptr(NA_REAL, _cSub, _solveData, _idx);
+  popCl = _PP[0];
+  popV = _PP[1];
+  popKa = _PP[2];
+  popVp = _PP[3];
+  popQ = _PP[4];
+  bsvCl = _PP[5];
+  bsvV = _PP[6];
+  bsvKa = _PP[7];
+  bsvVp = _PP[8];
+  bsvQ = _PP[9];
+  popLagDepot = _PP[10];
+  popLagCentral = _PP[11];
+  popRateCentral = _PP[12];
+  popDurCentral = _PP[13];
+  bsvLagDepot = _PP[14];
+  bsvLagCentral = _PP[15];
+  bsvRateCentral = _PP[16];
+  bsvDurCentral = _PP[17];
+  bsvImax = _PP[18];
+  popImax = _PP[19];
+  popIc50 = _PP[20];
+  bsvIc50 = _PP[21];
+  popKin = _PP[22];
+  bsvKin = _PP[23];
+  popKout = _PP[24];
+  bsvKout = _PP[25];
+  gamma = _PP[26];
+
+  R = NA_REAL;
+
+  cl =popCl*exp(bsvCl);
+  v =popV*exp(bsvV);
+  ka =popKa*exp(bsvKa);
+  q =popQ*exp(bsvQ);
+  vp =popVp*exp(bsvVp);
+  _dur[(&_solveData->subjects[_cSub])->linCmt+1] = popDurCentral*exp(bsvDurCentral);
+  logitImax =-_safe_log(1/safe_zero(popImax)-1)+bsvImax;
+  Imax=1/safe_zero((1+exp(-logitImax)));
+  ic50=popIc50*exp(bsvIc50);
+  kin=popKin*exp(bsvKin);
+  kout=popKout*exp(bsvKout);
+
+  return _dur[_cmt];
 }
 // Model Times
 void rxModels_pk2cmtIdr1_mtime(int _cSub, double *_mtime){
 }
+// Matrix Exponential (0)
+void rxModels_pk2cmtIdr1_ME(int _cSub, double _t, double __t, double *_mat, const double *__zzStateVar__){
+   double t = __t + _solveData->subjects[_cSub].curShift;
+  (void)t;
+  }
+// Inductive linearization Matf
+void rxModels_pk2cmtIdr1_IndF(int _cSub, double _t, double __t, double *_matf){
+   double t = __t + _solveData->subjects[_cSub].curShift;
+  (void)t;
+  }
 extern SEXP rxModels_pk2cmtIdr1_model_vars(){
   int pro=0;
   SEXP _mv = PROTECT(_rxGetModelLib("rxModels_pk2cmtIdr1_model_vars"));pro++;
   if (!_rxIsCurrentC(_mv)){
-    SEXP lst      = PROTECT(allocVector(VECSXP, 20));pro++;
-    SEXP names    = PROTECT(allocVector(STRSXP, 20));pro++;
+    SEXP lst      = PROTECT(allocVector(VECSXP, 22));pro++;
+    SEXP names    = PROTECT(allocVector(STRSXP, 22));pro++;
     SEXP sNeedSort = PROTECT(allocVector(INTSXP,1));pro++;
+    SEXP sLinCmt = PROTECT(allocVector(INTSXP,10));pro++;    INTEGER(sLinCmt)[0]= 2;
+    INTEGER(sLinCmt)[1]= 1;
+    INTEGER(sLinCmt)[2]= 0;
+    INTEGER(sLinCmt)[3]= 0;
+    INTEGER(sLinCmt)[4]= 0;
+    INTEGER(sLinCmt)[5]= 0;
+    INTEGER(sLinCmt)[6]= 1;
+    INTEGER(sLinCmt)[7]= 0;
+    INTEGER(sLinCmt)[8]= 0;
+    INTEGER(sLinCmt)[9]= 0;
+    SEXP sLinCmtN = PROTECT(allocVector(STRSXP, 10));pro++;    SET_STRING_ELT(sLinCmtN, 0, mkChar("ncmt"));
+    SET_STRING_ELT(sLinCmtN, 1, mkChar("ka"));
+    SET_STRING_ELT(sLinCmtN, 2, mkChar("linB"));
+    SET_STRING_ELT(sLinCmtN, 3, mkChar("maxeta"));
+    SET_STRING_ELT(sLinCmtN, 4, mkChar("maxtheta"));
+    SET_STRING_ELT(sLinCmtN, 5, mkChar("hasCmt"));
+    SET_STRING_ELT(sLinCmtN, 6, mkChar("linCmt"));
+    SET_STRING_ELT(sLinCmtN, 7, mkChar("linCmtFlg"));
+    SET_STRING_ELT(sLinCmtN, 8, mkChar("nIndSim"));
+    SET_STRING_ELT(sLinCmtN, 9, mkChar("simflg"));
+   setAttrib(sLinCmt,   R_NamesSymbol, sLinCmtN);
     int *iNeedSort  = INTEGER(sNeedSort);
-    iNeedSort[0] = 0;
+    iNeedSort[0] = 14;
     SEXP sMtime = PROTECT(allocVector(INTSXP,1));pro++;
     int *iMtime  = INTEGER(sMtime);
     iMtime[0] = 0;
     SEXP sExtraCmt = PROTECT(allocVector(INTSXP,1));pro++;
     int *iExtraCmt  = INTEGER(sExtraCmt);
     iExtraCmt[0] = 2;
-    SEXP params   = PROTECT(allocVector(STRSXP, 26));pro++;
+    SEXP params   = PROTECT(allocVector(STRSXP, 27));pro++;
     SEXP lhs      = PROTECT(allocVector(STRSXP, 5));pro++;
+    SEXP slhs      = PROTECT(allocVector(STRSXP, 6));pro++;
     SEXP state    = PROTECT(allocVector(STRSXP, 1));pro++;
   SEXP extraState = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP stateRmS = PROTECT(allocVector(INTSXP, 1));pro++;
     SEXP timeInt = PROTECT(allocVector(INTSXP, 1));pro++;
-    INTEGER(timeInt)[0] = 1559285238;
+    INTEGER(timeInt)[0] = 1606108257;
     SEXP sens     = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP normState= PROTECT(allocVector(STRSXP, 1));pro++;
-    SEXP fn_ini   = PROTECT(allocVector(STRSXP, 0));pro++;
     SEXP dfdy     = PROTECT(allocVector(STRSXP, 0));pro++;
-    SEXP tran     = PROTECT(allocVector(STRSXP, 20));pro++;
-    SEXP trann    = PROTECT(allocVector(STRSXP, 20));pro++;
+    SEXP tran     = PROTECT(allocVector(STRSXP, 22));pro++;
+    SEXP trann    = PROTECT(allocVector(STRSXP, 22));pro++;
     SEXP mmd5     = PROTECT(allocVector(STRSXP, 2));pro++;
     SEXP mmd5n    = PROTECT(allocVector(STRSXP, 2));pro++;
-    SEXP model    = PROTECT(allocVector(STRSXP, 1));pro++;
-    SEXP modeln   = PROTECT(allocVector(STRSXP, 1));pro++;
+    SEXP model    = PROTECT(allocVector(STRSXP, 2));pro++;
+    SEXP modeln   = PROTECT(allocVector(STRSXP, 2));pro++;
     SEXP version    = PROTECT(allocVector(STRSXP, 3));pro++;
     SEXP versionn   = PROTECT(allocVector(STRSXP, 3));pro++;
     SET_STRING_ELT(version,0,mkChar("0.8.1-0"));
@@ -950,6 +952,11 @@ extern SEXP rxModels_pk2cmtIdr1_model_vars(){
     SET_STRING_ELT(params,7,mkChar("bsvKa"));
     SET_STRING_ELT(params,8,mkChar("bsvVp"));
     SET_STRING_ELT(params,9,mkChar("bsvQ"));
+  SET_STRING_ELT(slhs,0,mkChar("cl"));
+  SET_STRING_ELT(slhs,1,mkChar("v"));
+  SET_STRING_ELT(slhs,2,mkChar("ka"));
+  SET_STRING_ELT(slhs,3,mkChar("q"));
+  SET_STRING_ELT(slhs,4,mkChar("vp"));
     SET_STRING_ELT(params,10,mkChar("popLagDepot"));
     SET_STRING_ELT(params,11,mkChar("popLagCentral"));
     SET_STRING_ELT(params,12,mkChar("popRateCentral"));
@@ -961,6 +968,7 @@ extern SEXP rxModels_pk2cmtIdr1_model_vars(){
   SET_STRING_ELT(lhs,0,mkChar("cp"));
     SET_STRING_ELT(params,18,mkChar("bsvImax"));
     SET_STRING_ELT(params,19,mkChar("popImax"));
+  SET_STRING_ELT(slhs,5,mkChar("logitImax"));
   SET_STRING_ELT(lhs,1,mkChar("Imax"));
     SET_STRING_ELT(params,20,mkChar("popIc50"));
     SET_STRING_ELT(params,21,mkChar("bsvIc50"));
@@ -971,13 +979,16 @@ extern SEXP rxModels_pk2cmtIdr1_model_vars(){
     SET_STRING_ELT(params,24,mkChar("popKout"));
     SET_STRING_ELT(params,25,mkChar("bsvKout"));
   SET_STRING_ELT(lhs,4,mkChar("kout"));
+    SET_STRING_ELT(params,26,mkChar("gamma"));
     SET_STRING_ELT(state,0,mkChar("R"));
     SET_STRING_ELT(normState,0,mkChar("R"));
     _SR[0] = 0;
     SET_STRING_ELT(modeln,0,mkChar("normModel"));
-    SET_STRING_ELT(model,0,mkChar("popCl=1;\npopV=20;\npopKa=1;\npopVp=10;\npopQ=2;\nbsvCl=0;\nbsvV=0;\nbsvKa=0;\nbsvVp=0;\nbsvQ=0;\ncl~popCl*exp(bsvCl);\nv~popV*exp(bsvV);\nka~popKa*exp(bsvKa);\nq~popQ*exp(bsvQ);\nvp~popVp*exp(bsvVp);\npopLagDepot=0;\npopLagCentral=0;\npopRateCentral=0;\npopDurCentral=0;\nbsvLagDepot=0;\nbsvLagCentral=0;\nbsvRateCentral=0;\nbsvDurCentral=0;\nrx_ka~ka;\nrx_rate~popRateCentral*exp(bsvRateCentral);\nrx_dur~popDurCentral*exp(bsvDurCentral);\nrx_tlag~popLagDepot*exp(bsvLagDepot);\nrx_tlag2~popLagCentral*exp(bsvLagCentral);\nrx_F~1;\nrx_F2~1;\nrx_v~v;\nrx_k~cl/v;\nrx_k12~q/v;\nrx_k21~q/vp;\nrx_beta~0.5*(rx_k12+rx_k21+rx_k-sqrt((rx_k12+rx_k21+rx_k)*(rx_k12+rx_k21+rx_k)-4.0*rx_k21*rx_k));\nrx_alpha~rx_k21*rx_k/rx_beta;\nrx_A~rx_ka/(rx_ka-rx_alpha)*(rx_alpha-rx_k21)/(rx_alpha-rx_beta)/rx_v;\nrx_B~rx_ka/(rx_ka-rx_beta)*(rx_beta-rx_k21)/(rx_beta-rx_alpha)/rx_v;\nrx_A2~(rx_alpha-rx_k21)/(rx_alpha-rx_beta)/rx_v;\nrx_B2~(rx_beta-rx_k21)/(rx_beta-rx_alpha)/rx_v;\nrx_gamma~0;\nrx_C~0;\nrx_C2~0;\ncp=solveLinB(rx__PTR__,t,1,rx_A,rx_A2,rx_alpha,rx_B,rx_B2,rx_beta,rx_C,rx_C2,rx_gamma,rx_ka,rx_tlag,rx_tlag2,rx_F,rx_F2,rx_rate,rx_dur);\nbsvImax=0;\npopImax=0.9999;\nlogitImax~-log(1/popImax-1)+bsvImax;\nImax=1/(1+exp(-logitImax));\npopIc50=100;\nbsvIc50=0;\nic50=popIc50*exp(bsvIc50);\npopKin=9;\nbsvKin=0;\nkin=popKin*exp(bsvKin);\npopKout=0.3;\nbsvKout=0;\nkout=popKout*exp(bsvKout);\nd/dt(R)=kin*(1-Imax*cp/(ic50+cp))-kout*R;\nR(0)=kin/kout;\n"));
-    SEXP ini    = PROTECT(allocVector(REALSXP,26));pro++;
-    SEXP inin   = PROTECT(allocVector(STRSXP, 26));pro++;
+    SET_STRING_ELT(model,0,mkChar("popCl=1;\npopV=20;\npopKa=1;\npopVp=10;\npopQ=2;\nbsvCl=0;\nbsvV=0;\nbsvKa=0;\nbsvVp=0;\nbsvQ=0;\ncl~popCl*exp(bsvCl);\nv~popV*exp(bsvV);\nka~popKa*exp(bsvKa);\nq~popQ*exp(bsvQ);\nvp~popVp*exp(bsvVp);\npopLagDepot=0;\npopLagCentral=0;\npopRateCentral=0;\npopDurCentral=0;\nbsvLagDepot=0;\nbsvLagCentral=0;\nbsvRateCentral=0;\nbsvDurCentral=0;\ncp=linCmtA(rx__PTR__,t,1,2,1,cl,v,q,vp,0.0,0.0,popLagDepot*exp(bsvLagDepot),1.0,0.0,0.0,ka,popLagCentral*exp(bsvLagCentral),1.0,popRateCentral*exp(bsvRateCentral),popDurCentral*exp(bsvDurCentral));\nbsvImax=0;\npopImax=0.9999;\nlogitImax~-log(1/popImax-1)+bsvImax;\nImax=1/(1+exp(-logitImax));\npopIc50=100;\nbsvIc50=0;\nic50=popIc50*exp(bsvIc50);\npopKin=9;\nbsvKin=0;\nkin=popKin*exp(bsvKin);\npopKout=0.3;\nbsvKout=0;\nkout=popKout*exp(bsvKout);\ngamma=1;\nd/dt(R)=kin*(1-Imax*cp^gamma/(ic50^gamma+cp^gamma))-kout*R;\nR(0)=kin/kout;\n"));
+    SET_STRING_ELT(modeln,1,mkChar("indLin"));
+    SET_STRING_ELT(model,1,mkChar(""));
+    SEXP ini    = PROTECT(allocVector(REALSXP,27));pro++;
+    SEXP inin   = PROTECT(allocVector(STRSXP, 27));pro++;
     SET_STRING_ELT(inin,0,mkChar("popCl"));
     REAL(ini)[0] = 1.0000000000000000;
     SET_STRING_ELT(inin,1,mkChar("popV"));
@@ -1030,6 +1041,8 @@ extern SEXP rxModels_pk2cmtIdr1_model_vars(){
     REAL(ini)[24] = 0.3000000000000000;
     SET_STRING_ELT(inin,25,mkChar("bsvKout"));
     REAL(ini)[25] = 0.0000000000000000;
+    SET_STRING_ELT(inin,26,mkChar("gamma"));
+    REAL(ini)[26] = 1.0000000000000000;
     SET_STRING_ELT(names,0,mkChar("params"));
     SET_VECTOR_ELT(lst,  0,params);
     SET_STRING_ELT(names,1,mkChar("lhs"));
@@ -1048,31 +1061,36 @@ extern SEXP rxModels_pk2cmtIdr1_model_vars(){
     SET_VECTOR_ELT(lst,  7,dfdy);
     SET_STRING_ELT(names,8,mkChar("sens"));
     SET_VECTOR_ELT(lst,  8,sens);
-    SET_STRING_ELT(names,9,mkChar("fn.ini"));
-    SET_VECTOR_ELT(lst,  9,fn_ini);
-    SET_STRING_ELT(names,10,mkChar("state.ignore"));
-    SET_VECTOR_ELT(lst,  10,stateRmS);
-    SET_STRING_ELT(names,11,mkChar("version"));
-    SET_VECTOR_ELT(lst,  11,version);
-    SET_STRING_ELT(names,12,mkChar("normal.state"));
-    SET_VECTOR_ELT(lst,  12,normState);
-    SET_STRING_ELT(names,13,mkChar("needSort"));
-    SET_VECTOR_ELT(lst,  13,sNeedSort);
-    SET_STRING_ELT(names,14,mkChar("nMtime"));
-    SET_VECTOR_ELT(lst,  14,sMtime);
-    SET_STRING_ELT(names,15,mkChar("extraCmt"));
-    SET_VECTOR_ELT(lst,  15,sExtraCmt);
-    SET_STRING_ELT(names, 16, mkChar("stateExtra"));
-    SET_VECTOR_ELT(lst,  16, extraState);
-    SET_STRING_ELT(names, 17, mkChar("dvid"));
+    SET_STRING_ELT(names,9,mkChar("state.ignore"));
+    SET_VECTOR_ELT(lst,  9,stateRmS);
+    SET_STRING_ELT(names,10,mkChar("version"));
+    SET_VECTOR_ELT(lst,  10,version);
+    SET_STRING_ELT(names,11,mkChar("normal.state"));
+    SET_VECTOR_ELT(lst,  11,normState);
+    SET_STRING_ELT(names,12,mkChar("needSort"));
+    SET_VECTOR_ELT(lst,  12,sNeedSort);
+    SET_STRING_ELT(names,13,mkChar("nMtime"));
+    SET_VECTOR_ELT(lst,  13,sMtime);
+    SET_STRING_ELT(names,14,mkChar("extraCmt"));
+    SET_VECTOR_ELT(lst,  14,sExtraCmt);
+    SET_STRING_ELT(names, 15, mkChar("stateExtra"));
+    SET_VECTOR_ELT(lst,  15, extraState);
+    SET_STRING_ELT(names, 16, mkChar("dvid"));
     SEXP sDvid = PROTECT(allocVector(INTSXP,0));pro++;
-    SET_VECTOR_ELT(lst, 17, sDvid);
-    SET_STRING_ELT(names,18,mkChar("timeId"));
-    SET_VECTOR_ELT(lst,  18,timeInt);
-    SET_STRING_ELT(names,19,mkChar("md5"));    SET_VECTOR_ELT(lst,  19,mmd5);    SET_STRING_ELT(mmd5n,0,mkChar("file_md5"));
-    SET_STRING_ELT(mmd5,0,mkChar("515806b4eb34a59fa8edf1e7bd2b45b7"));
+    SET_VECTOR_ELT(lst, 16, sDvid);
+    SET_STRING_ELT(names,20,mkChar("timeId"));
+    SET_VECTOR_ELT(lst,  20,timeInt);
+    SET_STRING_ELT(names,17,mkChar("indLin"));
+SEXP matLst = PROTECT(allocVector(VECSXP, 0));pro++;
+ SET_VECTOR_ELT(lst,  17, matLst);
+    SET_STRING_ELT(names,21,mkChar("md5"));    SET_VECTOR_ELT(lst,  21,mmd5);    SET_STRING_ELT(names,18,mkChar("flags"));
+    SET_VECTOR_ELT(lst,  18,sLinCmt);
+    SET_STRING_ELT(names,19,mkChar("slhs"));
+    SET_VECTOR_ELT(lst,  19,slhs);
+    SET_STRING_ELT(mmd5n,0,mkChar("file_md5"));
+    SET_STRING_ELT(mmd5,0,mkChar(""));
     SET_STRING_ELT(mmd5n,1,mkChar("parsed_md5"));
-    SET_STRING_ELT(mmd5,1,mkChar("515806b4eb34a59fa8edf1e7bd2b45b7"));
+    SET_STRING_ELT(mmd5,1,mkChar("937c6720ff850bec3f0a7b49fcf3be23"));
     SET_STRING_ELT(trann,0,mkChar("lib.name"));
     SET_STRING_ELT(tran, 0,mkChar("rxModels"));
     SET_STRING_ELT(trann,1,mkChar("jac"));
@@ -1113,6 +1131,10 @@ extern SEXP rxModels_pk2cmtIdr1_model_vars(){
     SET_STRING_ELT(tran, 18,mkChar("rxModels_pk2cmtIdr1_mtime"));
     SET_STRING_ELT(trann,19,mkChar("assignFuns"));
     SET_STRING_ELT(tran, 19,mkChar("rxModels_pk2cmtIdr1_assignFuns"));
+    SET_STRING_ELT(trann,20,mkChar("ME"));
+    SET_STRING_ELT(tran, 20,mkChar("rxModels_pk2cmtIdr1_ME"));
+    SET_STRING_ELT(trann,21,mkChar("IndF"));
+    SET_STRING_ELT(tran, 21,mkChar("rxModels_pk2cmtIdr1_IndF"));
     setAttrib(tran, R_NamesSymbol, trann);
     setAttrib(mmd5, R_NamesSymbol, mmd5n);
     setAttrib(model, R_NamesSymbol, modeln);
@@ -1134,10 +1156,10 @@ extern void rxModels_pk2cmtIdr1_dydt_lsoda(int *neq, double *t, double *A, doubl
 {
   rxModels_pk2cmtIdr1_dydt(neq, *t, A, DADT);
 }
-extern int rxModels_pk2cmtIdr1_dydt_liblsoda(double t, double *y, double *ydot, void *data)
+extern int rxModels_pk2cmtIdr1_dydt_liblsoda(double __t, double *y, double *ydot, void *data)
 {
   int *neq = (int*)(data);
-  rxModels_pk2cmtIdr1_dydt(neq, t, y, ydot);
+  rxModels_pk2cmtIdr1_dydt(neq, __t, y, ydot);
   return(0);
 }
 extern void rxModels_pk2cmtIdr1_calc_jac_lsoda(int *neq, double *t, double *A,int *ml, int *mu, double *JAC, int *nrowpd){
@@ -1155,7 +1177,6 @@ void R_init0_rxModels_pk2cmtIdr1(){
   // Get C callables on load; Otherwise it isn't thread safe
   _assignFuns();
   R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_assignFuns", (DL_FUNC) rxModels_pk2cmtIdr1_assignFuns);
-  R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_theta", (DL_FUNC) rxModels_pk2cmtIdr1_theta);
   R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_inis",(DL_FUNC) rxModels_pk2cmtIdr1_inis);
   R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_dydt",(DL_FUNC) rxModels_pk2cmtIdr1_dydt);
   R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_calc_lhs",(DL_FUNC) rxModels_pk2cmtIdr1_calc_lhs);
@@ -1169,6 +1190,8 @@ void R_init0_rxModels_pk2cmtIdr1(){
   R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_Rate", (DL_FUNC) rxModels_pk2cmtIdr1_Rate);
   R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_Dur", (DL_FUNC) rxModels_pk2cmtIdr1_Dur);
   R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_mtime", (DL_FUNC) rxModels_pk2cmtIdr1_mtime);
+  R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_ME", (DL_FUNC) rxModels_pk2cmtIdr1_ME);
+  R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_IndF", (DL_FUNC) rxModels_pk2cmtIdr1_IndF);
   R_RegisterCCallable("rxModels","rxModels_pk2cmtIdr1_dydt_liblsoda", (DL_FUNC) rxModels_pk2cmtIdr1_dydt_liblsoda);
 }
 //Initialize the dll to match RxODE's calls

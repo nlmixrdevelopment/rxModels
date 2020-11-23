@@ -26,6 +26,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{RxODE}{\code{\link[RxODE]{RxODE}}, \code{\link[RxODE]{et}}, \code{\link[RxODE]{etRep}}, \code{\link[RxODE]{etSeq}}, \code{\link[RxODE]{as.et}}, \code{\link[RxODE]{eventTable}}, \code{\link[RxODE]{add.dosing}}, \code{\link[RxODE]{add.sampling}}, \code{\link[RxODE]{rxControl}}, \code{\link[RxODE]{rxClean}}, \code{\link[RxODE]{rxUse}}, \code{\link[RxODE]{rxShiny}}, \code{\link[RxODE]{genShinyApp.template}}, \code{\link[RxODE]{cvPost}}, \code{\link[RxODE]{\%>\%}}, \code{\link[RxODE]{rxSolve}}}
+  \item{RxODE}{\code{\link[RxODE:reexports]{\%>\%}}, \code{\link[RxODE]{RxODE}}, \code{\link[RxODE]{add.dosing}}, \code{\link[RxODE]{add.sampling}}, \code{\link[RxODE]{as.et}}, \code{\link[RxODE]{cvPost}}, \code{\link[RxODE]{et}}, \code{\link[RxODE]{etRep}}, \code{\link[RxODE]{etSeq}}, \code{\link[RxODE]{eventTable}}, \code{\link[RxODE]{genShinyApp.template}}, \code{\link[RxODE]{rxClean}}, \code{\link[RxODE:rxSolve]{rxControl}}, \code{\link[RxODE]{rxShiny}}, \code{\link[RxODE]{rxSolve}}, \code{\link[RxODE]{rxUse}}}
 }}
 

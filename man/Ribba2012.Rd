@@ -4,7 +4,8 @@
 \name{Ribba2012}
 \alias{Ribba2012}
 \title{Ribba2012 RxODE model}
-\format{An \emph{RxODE} model with 9 parameters, 4 ODE states, and 1 calc vars.
+\format{
+An \emph{RxODE} model with 9 parameters, 4 ODE states, and 1 calc vars.
 
 \emph{Parameters (Ribba2012$params)}
 
@@ -39,7 +40,8 @@ Eta parameters are all zero by default.
   \item{pstar}{The total tumor tissue ie p + pt + q}
 }
 
-A tumor growth inhibition model for low-grade glioma treated with chemotherapy or radiotherapy}
+A tumor growth inhibition model for low-grade glioma treated with chemotherapy or radiotherapy
+}
 \usage{
 Ribba2012
 }
