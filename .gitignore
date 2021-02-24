@@ -2,3 +2,4 @@
 /R/rxUpdated.R
 *.so
 *.o
+src/
