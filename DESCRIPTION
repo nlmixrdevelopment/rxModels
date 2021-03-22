@@ -5,13 +5,18 @@ Authors@R: c(
    person("Matthew L.","Fidler",
       role = c("aut", "cre"), email = "matthew.fidler@gmail.com",
       comment=c(ORCID="0000-0001-8538-6691")))
-Imports: RxODE
+Imports: lotri
 LinkingTo: RxODE
-Suggests: devtools, usethis
+Suggests: 
+    knitr,
+    devtools,
+    usethis,
+    rmarkdown
 Description: A group of precompiled RxODE models
-Depends: R (>= 3.5.1)
-License: GPL (>= 2), RxODE
+Depends: R (>= 4.0), RxODE
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Biarch: true
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr

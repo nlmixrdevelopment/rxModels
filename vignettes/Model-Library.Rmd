@@ -1,0 +1,26 @@
+---
+title: "Model Library"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Model Library}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rxModels)
+```
+
+# Jones2013 Human PBPK RxODE model
+
+```{r}
+Jones2013 %>% solve(et(amt=100,cmt=D,ii=4,until=24) %>% et(seq(0,24,length.out=100))) %>% plot
+```
+
